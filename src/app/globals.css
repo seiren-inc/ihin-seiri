@@ -2,21 +2,21 @@
 
 :root {
   /* =========================================
-     Color Tokens
+     Color Tokens (案B: Warm & Relief)
   ========================================= */
-  --color-bg: #fafbfc;
-  --color-bg-section: #f5f7fa;
-  --color-text: #1a1a2e;
-  --color-text-sub: #5a6070;
-  --color-border: #e2e5ea;
+  --color-bg: #fdfbf7;
+  --color-bg-section: #f4efe6;
+  --color-text: #362d26;
+  --color-text-sub: #786b5d;
+  --color-border: #dcd2c6;
 
-  --color-primary: #2b6b8a; /* 信頼のブルーグリーン */
-  --color-primary-dark: #1e4f66;
-  --color-accent: #3a8fb7; /* CTA用明るめブルー */
-  --color-accent-hover: #2d7a9e;
+  --color-primary: #4a3f35; /* メインカラー（ソフトなダークブラウン） */
+  --color-primary-dark: #362d26;
+  --color-accent: #2e8b57; /* アクセントカラー（シーグリーン） */
+  --color-accent-hover: #246e45;
 
-  --color-warning: #c17900;
-  --color-success: #2d8659;
+  --color-warning: #d97706;
+  --color-success: #2e8b57;
   --color-white: #ffffff;
 
   /* =========================================
