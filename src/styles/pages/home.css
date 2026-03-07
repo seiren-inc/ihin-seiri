@@ -1,0 +1,136 @@
+/* =========================================
+   Home Page Specific Styles
+========================================= */
+
+/* Common Section Styles */
+.section-title {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--space-sm);
+}
+
+.section-desc {
+  font-size: var(--font-size-md);
+  color: var(--color-text-sub);
+}
+
+.text-white {
+  color: var(--color-white) !important;
+}
+
+.opacity-80 {
+  opacity: 0.8;
+}
+
+.mt-lg {
+  margin-top: var(--space-lg);
+}
+
+.mt-xl {
+  margin-top: var(--space-xl);
+}
+
+.bg-section {
+  background-color: var(--color-bg-section);
+}
+
+.bg-primary {
+  background-color: var(--color-primary-dark);
+}
+
+/* Hero Section */
+.section-hero {
+  padding-top: var(--space-2xl);
+  padding-bottom: var(--space-xl);
+  min-height: calc(100vh - 80px); /* Subtract header height */
+  display: flex;
+  align-items: center;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.3;
+  margin-bottom: var(--space-md);
+  color: var(--color-primary-dark);
+  letter-spacing: -0.02em;
+}
+
+.hero-desc {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-sub);
+  margin-bottom: var(--space-lg);
+}
+
+/* Trust Section */
+.trust-visual {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Service Section */
+.service-card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.service-card-content {
+  padding: var(--space-md);
+}
+
+.service-title {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--space-xs);
+}
+
+.service-desc {
+  margin-bottom: var(--space-md);
+  min-height: 3em; 
+}
+
+/* Case Section */
+.case-card {
+  background-color: var(--color-bg);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.case-card-content {
+  padding: var(--space-md) 0;
+}
+
+.case-tag {
+  display: inline-block;
+  font-size: var(--font-size-xs);
+  padding: 0.25rem 0.5rem;
+  background-color: var(--color-border);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-xs);
+  font-weight: 700;
+}
+
+.case-title {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-xs);
+}
+
+.case-meta {
+  font-size: var(--font-size-sm);
+}
+
+/* Legal Notice */
+.legal-list {
+  padding-left: 1.25rem;
+  list-style-type: disc;
+}
+.legal-list li {
+  margin-bottom: 0.25rem;
+  font-size: var(--font-size-sm);
+}
