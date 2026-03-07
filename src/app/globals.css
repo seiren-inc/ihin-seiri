@@ -2,18 +2,18 @@
 
 :root {
   /* =========================================
-     Color Tokens (案B: Warm & Relief)
+     Color Tokens (案C: Clear & Elegant)
   ========================================= */
-  --color-bg: #fdfbf7;
-  --color-bg-section: #f4efe6;
-  --color-text: #362d26;
-  --color-text-sub: #786b5d;
-  --color-border: #dcd2c6;
+  --color-bg: #ffffff;
+  --color-bg-section: #f8f9fa;
+  --color-text: #2c3e50;
+  --color-text-sub: #6c7a89;
+  --color-border: #e2e8f0;
 
-  --color-primary: #4a3f35; /* メインカラー（ソフトなダークブラウン） */
-  --color-primary-dark: #362d26;
-  --color-accent: #2e8b57; /* アクセントカラー（シーグリーン） */
-  --color-accent-hover: #246e45;
+  --color-primary: #2c3e50; /* 落ち着きと重厚感の青墨色 */
+  --color-primary-dark: #1a252f;
+  --color-accent: #c08497; /* ロータスピンク */
+  --color-accent-hover: #a56f82;
 
   --color-warning: #d97706;
   --color-success: #2e8b57;
