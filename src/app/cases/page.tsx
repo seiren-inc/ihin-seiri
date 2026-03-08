@@ -12,57 +12,72 @@ export default function CasesPage() {
   const publishedCases = caseStudies.filter(c => c.published);
 
   return (
-    <div className="page-cases">
-      <div className="bg-section section-py-md">
-        <div className="container text-center">
-          <h1 className="section-title">施工事例</h1>
-          <p className="section-desc">清蓮でサポートさせていただいた事例をご紹介します。</p>
+    <div className="bg-background">
+      {/* ページヘッダー */}
+      <div className="bg-bg-section py-16">
+        <div className="max-w-[1200px] mx-auto px-6 text-center">
+          <h1 className="text-4xl font-bold text-primary-dark mb-4">施工事例</h1>
+          <p className="text-text-sub text-lg">清蓮でサポートさせていただいた事例をご紹介します。</p>
         </div>
       </div>
 
-      <div className="container section-py-lg">
-        {/* Simple Filter UI (Static display for Phase 2/3) */}
-        <div className="filter-wrapper mb-xl text-center" style={{ marginBottom: '3rem' }}>
-          <div className="inline-flex gap-sm p-xs" style={{ background: 'var(--color-bg-section)', borderRadius: '100px', display: 'inline-flex', padding: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-            <span className="btn btn-sm btn-primary" style={{ borderRadius: '100px' }}>すべて</span>
-            <span className="btn btn-sm" style={{ borderRadius: '100px', background: 'transparent' }}>遺品整理</span>
-            <span className="btn btn-sm" style={{ borderRadius: '100px', background: 'transparent' }}>ゴミ清掃</span>
-            <span className="btn btn-sm" style={{ borderRadius: '100px', background: 'transparent' }}>特殊清掃</span>
+      <div className="max-w-[1200px] mx-auto px-6 py-24">
+        {/* フィルター（静的表示） */}
+        <div className="mb-12 text-center">
+          <div className="inline-flex gap-2 p-2 bg-bg-section rounded-full flex-wrap justify-center">
+            <span className="px-5 py-2 bg-primary text-white text-sm font-bold rounded-full cursor-pointer">すべて</span>
+            <span className="px-5 py-2 bg-transparent text-text-sub text-sm font-bold rounded-full cursor-pointer hover:bg-border/50 transition-colors">遺品整理</span>
+            <span className="px-5 py-2 bg-transparent text-text-sub text-sm font-bold rounded-full cursor-pointer hover:bg-border/50 transition-colors">ゴミ清掃</span>
+            <span className="px-5 py-2 bg-transparent text-text-sub text-sm font-bold rounded-full cursor-pointer hover:bg-border/50 transition-colors">特殊清掃</span>
           </div>
         </div>
 
-        <div className="case-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+        {/* 事例グリッド */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {publishedCases.map(caseStudy => (
-            <Link key={caseStudy.id} href={`/cases/${caseStudy.slug}`} className="case-card">
+            <Link
+              key={caseStudy.id}
+              href={`/cases/${caseStudy.slug}`}
+              className="group bg-white border border-border rounded-2xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
+            >
               <ImagePlaceholder text={caseStudy.afterImagePlaceholder} aspectRatio="4:3" />
-              <div className="case-card-content" style={{ padding: '1.5rem' }}>
-                <div className="flex gap-xs mb-sm" style={{ marginBottom: '0.75rem', display: 'flex', gap: '0.5rem' }}>
-                  <span className="case-tag" style={{ background: 'var(--color-bg-section)', fontSize: '0.75rem', padding: '0.25rem 0.5rem', borderRadius: '4px', fontWeight: 700 }}>{caseStudy.roomType}</span>
-                  <span className="case-tag" style={{ background: 'var(--color-bg-section)', fontSize: '0.75rem', padding: '0.25rem 0.5rem', borderRadius: '4px', fontWeight: 700 }}>{caseStudy.prefecture}{caseStudy.area}</span>
+              <div className="p-6">
+                {/* タグ */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  <span className="bg-bg-section text-text-sub text-xs font-bold px-2 py-1 rounded">
+                    {caseStudy.roomType}
+                  </span>
+                  <span className="bg-bg-section text-text-sub text-xs font-bold px-2 py-1 rounded">
+                    {caseStudy.prefecture}{caseStudy.area}
+                  </span>
                   {caseStudy.hasMemorialSupport && (
-                    <span className="case-tag" style={{ background: 'rgba(58, 143, 183, 0.1)', color: 'var(--color-accent)', fontSize: '0.75rem', padding: '0.25rem 0.5rem', borderRadius: '4px', fontWeight: 700 }}>供養対応</span>
+                    <span className="bg-accent/10 text-accent text-xs font-bold px-2 py-1 rounded">
+                      供養対応
+                    </span>
                   )}
                 </div>
-                <h2 className="case-title text-primary-dark hover-text-primary" style={{ fontSize: '1.25rem', marginBottom: '1rem', fontWeight: 700, lineHeight: 1.4 }}>
+
+                <h2 className="text-xl font-bold text-primary-dark group-hover:text-primary transition-colors duration-200 mb-4 leading-snug">
                   {caseStudy.title}
                 </h2>
-                <div className="grid grid-cols-2 gap-sm text-sub" style={{ fontSize: '0.875rem' }}>
+
+                <div className="grid grid-cols-2 gap-3 text-sm">
                   <div>
-                    <span style={{ display: 'block', fontSize: '0.75rem', opacity: 0.8 }}>作業料金目安</span>
-                    <strong style={{ color: 'var(--color-text)' }}>{caseStudy.priceBand}</strong>
+                    <span className="block text-xs text-text-sub mb-1">作業料金目安</span>
+                    <strong className="text-text font-bold">{caseStudy.priceBand}</strong>
                   </div>
                   <div>
-                    <span style={{ display: 'block', fontSize: '0.75rem', opacity: 0.8 }}>作業時間</span>
-                    <strong style={{ color: 'var(--color-text)' }}>{caseStudy.workTime} / {caseStudy.workerCount}名</strong>
+                    <span className="block text-xs text-text-sub mb-1">作業時間</span>
+                    <strong className="text-text font-bold">{caseStudy.workTime} / {caseStudy.workerCount}名</strong>
                   </div>
                 </div>
               </div>
             </Link>
           ))}
         </div>
-        
-        <div className="text-center mt-xl" style={{ marginTop: '3rem' }}>
-          <p className="text-sub mb-md">その他の事例も多数ございます。まずはお気軽にお問い合わせください。</p>
+
+        <div className="text-center mt-16">
+          <p className="text-text-sub mb-6">その他の事例も多数ございます。まずはお気軽にお問い合わせください。</p>
           <Button href="/contact" size="lg">無料相談・お見積り</Button>
         </div>
       </div>

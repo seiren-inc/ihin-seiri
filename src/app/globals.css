@@ -164,3 +164,31 @@ button {
   white-space: nowrap;
   border: 0;
 }
+
+/* =========================================
+   Tailwind @layer utilities
+========================================= */
+@layer utilities {
+  .section-py-sm  { @apply py-10; }
+  .section-py-md  { @apply py-16; }
+  .section-py-lg  { @apply py-24; }
+  .section-py-xl  { @apply py-32; }
+  .container {
+    @apply max-w-[1200px] mx-auto px-6;
+  }
+}
+
+@layer components {
+  .section-title {
+    @apply text-3xl font-bold text-primary-dark leading-snug;
+  }
+  .section-desc {
+    @apply text-text-sub text-lg mt-2;
+  }
+  .card {
+    @apply bg-white border border-border rounded-2xl overflow-hidden shadow-sm;
+  }
+  .legal-list {
+    @apply flex flex-col gap-2 text-sm text-text-sub list-disc list-inside;
+  }
+}
