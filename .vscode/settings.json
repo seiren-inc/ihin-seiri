@@ -1,0 +1,18 @@
+{
+  // Tailwind CSS IntelliSense の使用のため、VS Code 組み込みの CSS バリデーターを無効化
+  "css.validate": false,
+  "scss.validate": false,
+
+  // Tailwind CSS IntelliSense に glob ファイルとして認識させる
+  "tailwindCSS.includeLanguages": {
+    "typescriptreact": "html",
+    "typescript": "html"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    ["clsx\\(([^)]*)\\)", "'([^']*)'"],
+    ["cn\\(([^)]*)\\)", "'([^']*)'"]
+  ],
+  "editor.quickSuggestions": {
+    "strings": true
+  }
+}

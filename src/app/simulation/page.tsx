@@ -21,9 +21,9 @@ export default function SimulationPage() {
 
     const baseRule = basePricingRules.find(r => r.roomType === roomType) || basePricingRules[0];
     
-    let volMod = simulationModifiers.volume[volume as keyof typeof simulationModifiers.volume] || 1.0;
-    let floorMod = simulationModifiers.floorLevel[floorLevel as keyof typeof simulationModifiers.floorLevel] || 1.0;
-    let srvMod = simulationModifiers.serviceType[serviceType as keyof typeof simulationModifiers.serviceType] || 1.0;
+    const volMod = simulationModifiers.volume[volume as keyof typeof simulationModifiers.volume] || 1.0;
+    const floorMod = simulationModifiers.floorLevel[floorLevel as keyof typeof simulationModifiers.floorLevel] || 1.0;
+    const srvMod = simulationModifiers.serviceType[serviceType as keyof typeof simulationModifiers.serviceType] || 1.0;
 
     let min = baseRule.minPrice * volMod * floorMod * srvMod;
     let max = baseRule.maxPrice * volMod * floorMod * srvMod;
