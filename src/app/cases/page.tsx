@@ -1,16 +1,52 @@
 import Link from 'next/link';
-import { caseStudies } from '@/data/cases';
 import { Button } from '@/components/common/Button';
 import Image from 'next/image';
 import { PageHero } from '@/components/layout/PageHero';
+import { fetchCaseStudies } from '@/lib/microcms';
+// CMS未設定時のフォールバック
+import { caseStudies as staticCaseStudies } from '@/data/cases';
 
 export const metadata = {
   title: '施工事例 | 清蓮｜遺品整理サービス',
   description: '遺品整理、ゴミ清掃、特殊清掃の施工事例をご紹介します。参考料金や作業時間なども掲載しています。',
 };
 
-export default function CasesPage() {
-  const publishedCases = caseStudies.filter(c => c.published);
+// ISR: 60秒ごとに再生成（CMS更新が自動反映される）
+export const revalidate = 60;
+
+export default async function CasesPage() {
+  // CMS から取得。取得できない場合は静的データにフォールバック
+  const cmsCases = await fetchCaseStudies();
+
+  const cases = cmsCases
+    ? cmsCases.map((c) => ({
+        id: c.id,
+        slug: c.slug,
+        title: c.title,
+        roomType: c.roomType,
+        prefecture: c.prefecture,
+        area: c.area,
+        priceBand: c.priceBand,
+        workTime: c.workTime,
+        workerCount: c.workerCount,
+        hasMemorialSupport: c.hasMemorialSupport,
+        afterImageSrc: c.afterImage?.url ?? '/images/hero-main.png',
+      }))
+    : staticCaseStudies
+        .filter((c) => c.published)
+        .map((c) => ({
+          id: c.id,
+          slug: c.slug,
+          title: c.title,
+          roomType: c.roomType,
+          prefecture: c.prefecture,
+          area: c.area,
+          priceBand: c.priceBand,
+          workTime: c.workTime,
+          workerCount: c.workerCount,
+          hasMemorialSupport: c.hasMemorialSupport,
+          afterImageSrc: c.afterImagePlaceholder || '/images/hero-main.png',
+        }));
 
   return (
     <div className="bg-background">
@@ -33,7 +69,7 @@ export default function CasesPage() {
 
         {/* 事例グリッド */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {publishedCases.map(caseStudy => (
+          {cases.map((caseStudy) => (
             <Link
               key={caseStudy.id}
               href={`/cases/${caseStudy.slug}`}
@@ -41,7 +77,7 @@ export default function CasesPage() {
             >
               <div className="relative w-full aspect-[4/3] bg-bg-light overflow-hidden">
                 <Image
-                  src={caseStudy.afterImagePlaceholder || '/images/hero-main.png'}
+                  src={caseStudy.afterImageSrc}
                   alt={`${caseStudy.title}の施工後画像`}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
