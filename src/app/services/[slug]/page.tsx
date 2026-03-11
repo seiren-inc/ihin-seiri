@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation';
 import { services } from '@/data/services';
 import { Button } from '@/components/common/Button';
-import { ImagePlaceholder } from '@/components/common/ImagePlaceholder';
+import Image from 'next/image';
+import { PageHero } from '@/components/layout/PageHero';
 import { NoticeBox } from '@/components/common/NoticeBox';
 import { getCombinedLegalNotice } from '@/data/legal';
 
@@ -33,29 +34,33 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
   return (
     <div className="page-service-detail">
-      {/* Hero Section */}
-      <section className="service-hero bg-section section-py-md text-center">
-        <div className="container">
-          <h1 className="service-title" style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>{service.title}</h1>
-          <p className="service-hero-desc text-sub max-w-2xl mx-auto" style={{ fontSize: '1.25rem' }}>
-            {service.heroTitle}
-          </p>
-        </div>
-      </section>
+      <PageHero
+        title={service.title}
+        description={service.heroTitle}
+        backgroundImage={`/images/service-${service.id}.png`}
+      />
 
       {/* Main Content */}
-      <section className="service-content section-py-lg">
+      <section className="service-content section-py-lg gap-xl">
         <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-xl items-center mb-xl">
-            <div className="visual">
-              <ImagePlaceholder text={`${service.title} Main Visual`} aspectRatio="4:3" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-xl lg:gap-2xl items-center mb-xl anim-fadeup">
+            <div className="visual reveal-wrapper rounded-lg overflow-hidden shadow-lg">
+              <div className="relative w-full aspect-[4/3] bg-bg-light">
+                <Image
+                  src={`/images/service-${service.id}.png`}
+                  alt={`${service.title}の作業風景`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover reveal-img"
+                />
+              </div>
             </div>
             <div className="text-content">
-              <h2 className="section-title" style={{ fontSize: '1.75rem', marginBottom: '1.5rem' }}>{service.shortDescription}</h2>
-              <p className="text-body mb-lg">{service.heroDescription}</p>
+              <h2 className="section-title text-primary-dark mb-md" style={{ fontSize: '1.75rem' }}>{service.shortDescription}</h2>
+              <p className="text-body mb-lg text-lg leading-relaxed">{service.heroDescription}</p>
               
-              <div className="features-box p-md bg-section" style={{ padding: '1.5rem', borderRadius: '12px' }}>
-                <h3 className="features-title text-primary-dark" style={{ marginBottom: '1rem', fontWeight: 700 }}>■ 提供内容・特徴</h3>
+              <div className="features-box p-xl bg-bg-light rounded-lg shadow-sm border border-border">
+                <h3 className="features-title text-primary font-bold mb-md" style={{ fontSize: '1.25rem' }}>■ 提供内容・特徴</h3>
                 <ul className="legal-list">
                   {service.features.map((feature, idx) => (
                     <li key={idx} className="text-sub mb-xs">{feature}</li>
@@ -65,7 +70,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </div>
           </div>
 
-          <div className="text-center mt-xl">
+          <div className="text-center mt-2xl anim-fadeup" style={{ animationDelay: '0.1s' }}>
             <Button href="/pricing" size="lg" className="mr-md" style={{ marginRight: '1rem' }}>料金の目安を見る</Button>
             <Button href="/contact" variant="accent" size="lg">無料相談・お見積り</Button>
           </div>

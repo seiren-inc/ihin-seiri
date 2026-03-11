@@ -56,7 +56,7 @@ export default function LegalDisclosurePage() {
               <tr style={{ borderBottom: '1px solid var(--color-border)' }}>
                 <th style={{ padding: '1.5rem', backgroundColor: 'var(--color-bg-section)', fontWeight: 700 }}>連絡先</th>
                 <td style={{ padding: '1.5rem' }}>
-                  電話番号：0120-000-000<br/>
+                  電話番号：0800-888-8788<br/>
                   メール：contact@example.com（※仮設定）
                 </td>
               </tr>

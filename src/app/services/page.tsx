@@ -1,6 +1,7 @@
 import { services } from '@/data/services';
 import { Button } from '@/components/common/Button';
-import { ImagePlaceholder } from '@/components/common/ImagePlaceholder';
+import Image from 'next/image';
+import { PageHero } from '@/components/layout/PageHero';
 import { NoticeBox } from '@/components/common/NoticeBox';
 import { getCombinedLegalNotice } from '@/data/legal';
 
@@ -14,33 +15,40 @@ export default function ServicesPage() {
 
   return (
     <div className="page-services">
-      <div className="bg-section section-py-md">
-        <div className="container text-center">
-          <h1 className="section-title">サービス一覧</h1>
-          <p className="section-desc">清蓮でご案内可能な各種サービスについてご紹介します。</p>
-        </div>
-      </div>
+      <PageHero
+        title="サービス一覧"
+        description="ご遺族様の負担を軽減し、前を向くための環境づくりをサポートする清蓮の各サービスをご紹介します。"
+        backgroundImage="/images/hero-main.png"
+      />
 
       <div className="container section-py-lg">
-        <div className="flex flex-col gap-xl">
+        <div className="flex flex-col gap-2xl" style={{ gap: '6rem' }}>
           {services.map((service, index) => (
-            <div key={service.id} className={`service-row grid grid-cols-1 md:grid-cols-2 gap-xl items-center ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
-              <div className="service-visual">
-                <ImagePlaceholder text={`Service Main: ${service.title}`} aspectRatio="4:3" />
+            <div key={service.id} className="service-row grid grid-cols-1 md:grid-cols-2 gap-xl lg:gap-2xl items-center anim-fadeup">
+              <div className={`service-visual reveal-wrapper rounded-lg overflow-hidden shadow-lg ${index % 2 !== 0 ? 'md:order-last' : ''}`}>
+                <div className="relative w-full aspect-[4/3] bg-bg-light">
+                  <Image
+                    src={`/images/service-${service.id}.png`}
+                    alt={`${service.title}の作業イメージ`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover reveal-img"
+                  />
+                </div>
               </div>
               <div className="service-content">
-                <h2 className="section-title" style={{ fontSize: '2rem' }}>{service.title}</h2>
-                <h3 className="text-primary-dark" style={{ fontSize: '1.25rem', marginBottom: '1rem', fontWeight: 700 }}>{service.heroTitle}</h3>
-                <p className="text-sub" style={{ marginBottom: '1.5rem' }}>{service.heroDescription}</p>
+                <h2 className="section-title text-primary-dark mb-sm" style={{ fontSize: '2rem' }}>{service.title}</h2>
+                <h3 className="text-accent-600 mb-md" style={{ fontSize: '1.25rem', fontWeight: 700 }}>{service.heroTitle}</h3>
+                <p className="text-sub mb-lg text-lg leading-relaxed">{service.heroDescription}</p>
                 
-                <h4 style={{ marginBottom: '0.5rem', fontWeight: 700 }}>■ 主な特徴</h4>
-                <ul className="legal-list mb-lg" style={{ marginBottom: '1.5rem' }}>
+                <h4 className="text-primary font-bold mb-xs">■ 主な特徴</h4>
+                <ul className="legal-list mb-xl text-sub">
                   {service.features.map((feature, idx) => (
-                    <li key={idx} className="text-sub">{feature}</li>
+                    <li key={idx} className="mb-xs">{feature}</li>
                   ))}
                 </ul>
 
-                <Button href={`/services/${service.slug}`}>詳細を見る</Button>
+                <Button href={`/services/${service.slug}`} size="lg" variant="primary">詳細を見る</Button>
               </div>
             </div>
           ))}

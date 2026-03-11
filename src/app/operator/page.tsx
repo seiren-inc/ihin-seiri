@@ -41,7 +41,7 @@ export default function OperatorPage() {
               <tr style={{ borderBottom: '1px solid var(--color-border)' }}>
                 <th style={{ padding: '1.5rem', backgroundColor: 'var(--color-bg-section)', fontWeight: 700 }}>お問い合わせ</th>
                 <td style={{ padding: '1.5rem' }}>
-                  お電話：0120-000-000<br />
+                  お電話：0800-888-8788<br />
                   Web：お問い合わせフォームより受付
                 </td>
               </tr>

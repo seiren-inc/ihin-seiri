@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { caseStudies } from '@/data/cases';
-import { ImagePlaceholder } from '@/components/common/ImagePlaceholder';
 import { Button } from '@/components/common/Button';
+import Image from 'next/image';
+import { PageHero } from '@/components/layout/PageHero';
 
 export const metadata = {
   title: '施工事例 | 清蓮｜遺品整理サービス',
@@ -13,13 +14,11 @@ export default function CasesPage() {
 
   return (
     <div className="bg-background">
-      {/* ページヘッダー */}
-      <div className="bg-bg-section py-16">
-        <div className="max-w-[1200px] mx-auto px-6 text-center">
-          <h1 className="text-4xl font-bold text-primary-dark mb-4">施工事例</h1>
-          <p className="text-text-sub text-lg">清蓮でサポートさせていただいた事例をご紹介します。</p>
-        </div>
-      </div>
+      <PageHero
+        title="施工事例"
+        description="ご遺族様に寄り添い、丁寧に向き合わせていただいた清蓮の施工事例をご紹介します。"
+        backgroundImage="/images/hero-main.png"
+      />
 
       <div className="max-w-[1200px] mx-auto px-6 py-24">
         {/* フィルター（静的表示） */}
@@ -38,9 +37,17 @@ export default function CasesPage() {
             <Link
               key={caseStudy.id}
               href={`/cases/${caseStudy.slug}`}
-              className="group bg-white border border-border rounded-2xl overflow-hidden shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
+              className="group bg-white border border-border rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 anim-fadeup"
             >
-              <ImagePlaceholder text={caseStudy.afterImagePlaceholder} aspectRatio="4:3" />
+              <div className="relative w-full aspect-[4/3] bg-bg-light overflow-hidden">
+                <Image
+                  src={caseStudy.afterImagePlaceholder || '/images/hero-main.png'}
+                  alt={`${caseStudy.title}の施工後画像`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                />
+              </div>
               <div className="p-6">
                 {/* タグ */}
                 <div className="flex flex-wrap gap-2 mb-4">

@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation';
 import { caseStudies } from '@/data/cases';
 import { services } from '@/data/services';
-import { ImagePlaceholder } from '@/components/common/ImagePlaceholder';
+import Image from 'next/image';
+import { PageHero } from '@/components/layout/PageHero';
 import { Button } from '@/components/common/Button';
 
 export async function generateStaticParams() {
@@ -33,30 +34,24 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
 
   return (
     <div className="page-case-detail">
-      <div className="bg-section section-py-md">
-        <div className="container">
-          <div className="flex gap-xs mb-sm" style={{ marginBottom: '1rem', display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-            <span className="case-tag bg-white" style={{ fontSize: '0.875rem', padding: '0.25rem 0.75rem', borderRadius: '4px', fontWeight: 700, backgroundColor: 'white' }}>{service?.title}</span>
-            <span className="case-tag bg-white" style={{ fontSize: '0.875rem', padding: '0.25rem 0.75rem', borderRadius: '4px', fontWeight: 700, backgroundColor: 'white' }}>{caseStudy.prefecture}{caseStudy.area}</span>
-          </div>
-          <h1 className="case-title" style={{ fontSize: '2rem', marginBottom: '1rem', color: 'var(--color-primary-dark)', lineHeight: 1.4 }}>
-            {caseStudy.title}
-          </h1>
-        </div>
-      </div>
+      <PageHero
+        title={caseStudy.title}
+        description={`サービス：${service?.title || ''} ｜ エリア：${caseStudy.prefecture}${caseStudy.area}`}
+        backgroundImage={caseStudy.afterImagePlaceholder || '/images/hero-main.png'}
+      />
 
       <div className="container section-py-lg">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-xl">
           <div className="case-main-content lg:col-span-2" style={{ gridColumn: 'span 2' }}>
             
-            <div className="before-after-grid grid grid-cols-1 md:grid-cols-2 gap-md mb-xl" style={{ marginBottom: '3rem' }}>
-              <div className="image-wrapper">
-                <span className="label bg-text text-white" style={{ display: 'inline-block', padding: '0.25rem 1rem', background: '#333', color: 'white', fontWeight: 700, marginBottom: '0.5rem' }}>Before</span>
-                <ImagePlaceholder text={caseStudy.beforeImagePlaceholder} aspectRatio="4:3" />
+            <div className="before-after-grid grid grid-cols-1 md:grid-cols-2 gap-md mb-xl anim-fadeup" style={{ marginBottom: '3rem' }}>
+              <div className="image-wrapper reveal-wrapper rounded-lg overflow-hidden relative shadow-md aspect-[4/3] bg-bg-light">
+                <span className="label text-white absolute top-4 left-4 z-10" style={{ display: 'inline-block', padding: '0.25rem 1rem', background: 'rgba(0,0,0,0.6)', fontWeight: 700, borderRadius: '4px' }}>Before</span>
+                <Image src={caseStudy.beforeImagePlaceholder || '/images/hero-main.png'} alt="作業前" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover reveal-img" />
               </div>
-              <div className="image-wrapper">
-                <span className="label bg-primary text-white" style={{ display: 'inline-block', padding: '0.25rem 1rem', background: 'var(--color-primary)', color: 'white', fontWeight: 700, marginBottom: '0.5rem' }}>After</span>
-                <ImagePlaceholder text={caseStudy.afterImagePlaceholder} aspectRatio="4:3" />
+              <div className="image-wrapper reveal-wrapper rounded-lg overflow-hidden relative shadow-md aspect-[4/3] bg-bg-light" style={{ animationDelay: '0.2s' }}>
+                <span className="label bg-primary text-white absolute top-4 left-4 z-10" style={{ display: 'inline-block', padding: '0.25rem 1rem', fontWeight: 700, borderRadius: '4px' }}>After</span>
+                <Image src={caseStudy.afterImagePlaceholder || '/images/hero-main.png'} alt="作業後" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover reveal-img" />
               </div>
             </div>
 

@@ -62,10 +62,10 @@ export function SiteHeader() {
           {/* デスクトップ CTA */}
           <div className="hidden md:flex items-center gap-4">
             <a
-              href="tel:0120-000-000"
+              href="tel:0800-888-8788"
               className="text-xl font-bold text-primary hover:text-primary-dark transition-colors duration-200"
             >
-              0120-000-000
+              0800-888-8788
             </a>
             <Link
               href="/contact"
@@ -114,10 +114,10 @@ export function SiteHeader() {
 
           <div className="p-6 border-t border-border flex flex-col gap-3">
             <a
-              href="tel:0120-000-000"
+              href="tel:0800-888-8788"
               className="flex items-center justify-center gap-2 py-4 bg-primary text-white font-bold rounded-xl text-xl"
             >
-              0120-000-000
+              0800-888-8788
             </a>
             <Link
               href="/contact"

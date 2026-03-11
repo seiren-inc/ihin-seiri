@@ -33,7 +33,7 @@ export default function ContactPage() {
             <div className="card p-md mb-md" style={{ padding: '2rem', marginBottom: '1.5rem' }}>
               <h3 className="text-primary-dark" style={{ fontSize: '1.25rem', marginBottom: '0.5rem', fontWeight: 700 }}>お電話でのご相談</h3>
               <p className="text-sub mb-sm">お急ぎの方、直接状況をお話ししたい方はこちら</p>
-              <a href="tel:0120-000-000" className="text-primary" style={{ fontSize: '2rem', fontWeight: 800, display: 'block', margin: '1rem 0' }}>0120-000-000</a>
+              <a href="tel:0800-888-8788" className="text-primary" style={{ fontSize: '2rem', fontWeight: 800, display: 'block', margin: '1rem 0' }}>0800-888-8788</a>
               <p className="text-sub" style={{ fontSize: '0.875rem' }}>受付時間：9:00〜18:00（年中無休）</p>
             </div>
             

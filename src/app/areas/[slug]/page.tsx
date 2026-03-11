@@ -3,7 +3,8 @@ import { supportedAreas } from '@/data/areas';
 import { services } from '@/data/services';
 import { caseStudies } from '@/data/cases';
 import { Button } from '@/components/common/Button';
-import { ImagePlaceholder } from '@/components/common/ImagePlaceholder';
+import Image from 'next/image';
+import { PageHero } from '@/components/layout/PageHero';
 import Link from 'next/link';
 import { NoticeBox } from '@/components/common/NoticeBox';
 import { getCombinedLegalNotice } from '@/data/legal';
@@ -39,20 +40,11 @@ export default async function AreaDetailPage({ params }: { params: Promise<{ slu
 
   return (
     <div className="page-area-detail">
-      {/* Hero */}
-      <div className="bg-primary text-white section-py-lg text-center" style={{ backgroundColor: 'var(--color-primary-dark)' }}>
-        <div className="container">
-          <p className="mb-sm" style={{ opacity: 0.8, fontSize: '0.875rem', fontWeight: 700 }}>関東エリア対応</p>
-          <h1 className="section-title text-white" style={{ fontSize: '2.5rem', marginBottom: '1rem', lineHeight: 1.4 }}>
-            {area.prefecture}の遺品整理・ゴミ清掃<br />
-            特殊清掃はお任せください
-          </h1>
-          <p className="section-desc opacity-80 text-white mt-md" style={{ fontSize: '1.125rem' }}>
-            {area.prefecture}内全域、最短即日で無料訪問お見積りに伺います。<br />
-            ご遺族の負担を軽減し、安心・丁寧なサポートをご提供します。
-          </p>
-        </div>
-      </div>
+      <PageHero
+        title={`${area.prefecture}の遺品整理・ゴミ屋敷清掃・特殊清掃`}
+        description={`${area.prefecture}内全域、最短即日で無料訪問お見積りに伺います。ご遺族の負担を軽減し、安心・丁寧なサポートをご提供します。`}
+        backgroundImage="/images/hero-main.png"
+      />
 
       <div className="container section-py-lg">
         {/* SEO Content Text */}
@@ -91,11 +83,13 @@ export default async function AreaDetailPage({ params }: { params: Promise<{ slu
             <h2 className="section-title text-center text-primary-dark" style={{ fontSize: '1.75rem', marginBottom: '2rem' }}>{area.prefecture}での施工事例</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-lg">
               {areaCases.map(caseStudy => (
-                <Link key={caseStudy.id} href={`/cases/${caseStudy.slug}`} className="case-card">
-                  <ImagePlaceholder text={caseStudy.afterImagePlaceholder} aspectRatio="4:3" />
-                  <div className="case-card-content p-md" style={{ padding: '1rem' }}>
+                <Link key={caseStudy.id} href={`/cases/${caseStudy.slug}`} className="group bg-white border border-border rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 anim-fadeup">
+                  <div className="relative w-full aspect-[4/3] bg-bg-light overflow-hidden">
+                    <Image src={caseStudy.afterImagePlaceholder || '/images/hero-main.png'} alt={`${caseStudy.title}の事例`} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+                  </div>
+                  <div className="case-card-content p-md">
                     <div className="flex gap-xs mb-xs">
-                      <span className="case-tag" style={{ background: 'var(--color-bg-section)', fontSize: '0.75rem', padding: '0.25rem 0.5rem', borderRadius: '4px', fontWeight: 700 }}>
+                      <span className="case-tag bg-bg-section text-sub text-xs px-2 py-1 rounded font-bold">
                         {caseStudy.area}
                       </span>
                     </div>
@@ -114,9 +108,12 @@ export default async function AreaDetailPage({ params }: { params: Promise<{ slu
             {area.prefecture}の遺品整理・お片付けは<br/>清蓮にご相談ください
           </h2>
           <p className="text-sub mb-lg" style={{ marginBottom: '2rem' }}>現地のお見積り・ご相談は完全無料です。まずはお気軽にご連絡ください。</p>
-          <div className="flex flex-col md-flex-row gap-md justify-center">
-            <Button href="tel:0120-000-000" size="lg" className="bg-white text-primary-dark border" style={{ border: '2px solid var(--color-primary-dark)' }}>
-              <span style={{ fontSize: '1.5rem', fontWeight: 800 }}>0120-000-000</span>
+          <div className="flex flex-col md:flex-row gap-lg justify-center mt-lg">
+            <Button href="tel:0800-888-8788" size="lg" className="bg-white text-primary-dark shadow-sm hover:shadow-md transition-shadow" style={{ border: '2px solid var(--color-primary-dark)' }}>
+              <span className="text-2xl font-bold flex items-center justify-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                0800-888-8788
+              </span>
             </Button>
             <Button href="/contact" variant="accent" size="lg">Webから無料お見積り</Button>
           </div>
