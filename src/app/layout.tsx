@@ -4,6 +4,9 @@ import '../styles/layout.css';
 import '../styles/components/layout.css';
 import '../styles/components/common.css';
 import { LenisProvider } from '@/components/providers/LenisProvider';
+import { ScrollAnimations } from '@/components/providers/ScrollAnimations';
+import { PageTransitionProvider } from '@/components/providers/PageTransitionProvider';
+import { CustomCursor } from '@/components/common/CustomCursor';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { MobileStickyCTA } from '@/components/layout/MobileStickyCTA';
@@ -22,10 +25,14 @@ export default function RootLayout({
     <html lang="ja">
       <body>
         <LenisProvider>
+          <CustomCursor />
+          <ScrollAnimations />
           <div className="layout-content">
             <SiteHeader />
             <main className="main-content">
-              {children}
+              <PageTransitionProvider>
+                {children}
+              </PageTransitionProvider>
             </main>
             <SiteFooter />
             <MobileStickyCTA />

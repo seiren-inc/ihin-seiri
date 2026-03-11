@@ -34,51 +34,143 @@
 }
 
 .bg-primary {
-  background-color: var(--color-primary-dark);
+  background-color: var(--color-primary);
 }
 
-/* Hero Section */
+/* =========================================
+   Hero Section
+========================================= */
 .section-hero {
   padding-top: var(--space-2xl);
   padding-bottom: var(--space-xl);
-  min-height: calc(100vh - 80px); /* Subtract header height */
+  min-height: calc(100svh - 80px);
   display: flex;
   align-items: center;
+}
+
+.hero-badge {
+  display: inline-block;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-accent);
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-sm);
+  padding: 0.375rem 0.875rem;
+  border: 1px solid var(--color-accent-400);
+  border-radius: 9999px;
+  background: var(--color-accent-100);
 }
 
 .hero-title {
   font-size: clamp(2rem, 4vw, 3.5rem);
   line-height: 1.3;
   margin-bottom: var(--space-md);
-  color: var(--color-primary-dark);
-  letter-spacing: -0.02em;
+  color: var(--color-primary-950);
+  letter-spacing: 0.03em;
 }
 
 .hero-desc {
   font-size: var(--font-size-lg);
   color: var(--color-text-sub);
+  margin-bottom: var(--space-md);
+  line-height: 1.9;
+}
+
+/* Trust badges in hero */
+.hero-trust {
   margin-bottom: var(--space-lg);
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
-/* Trust Section */
-.trust-visual {
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+.trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-primary);
+  background: var(--color-primary-50);
+  border: 1px solid var(--color-primary-200);
+  border-radius: 9999px;
+  padding: 0.3rem 0.75rem;
 }
 
-/* Service Section */
-.service-card {
-  background-color: var(--color-white);
-  border: 1px solid var(--color-border);
+/* Hero image */
+.hero-img {
+  width: 100%;
+  height: auto;
   border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  object-fit: cover;
+}
+
+/* =========================================
+   Trust Section
+========================================= */
+.trust-img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  object-fit: cover;
+}
+
+.trust-content {
+  padding: var(--space-md) 0;
+}
+
+.trust-points {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.trust-point {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  padding: 0.75rem 1rem;
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.trust-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+/* =========================================
+   Service Section
+========================================= */
+.service-card {
   overflow: hidden;
   transition: transform var(--transition), box-shadow var(--transition);
 }
 
 .service-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.service-card-img {
+  overflow: hidden;
+  aspect-ratio: 3/2;
+}
+
+.service-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.service-card:hover .service-img {
+  transform: scale(1.05);
 }
 
 .service-card-content {
@@ -88,44 +180,212 @@
 .service-title {
   font-size: var(--font-size-xl);
   margin-bottom: var(--space-xs);
+  color: var(--color-primary-950);
 }
 
 .service-desc {
   margin-bottom: var(--space-md);
-  min-height: 3em; 
+  min-height: 3em;
+  color: var(--color-text-sub);
 }
 
-/* Case Section */
+/* =========================================
+   Case Section
+========================================= */
 .case-card {
-  background-color: var(--color-bg);
-  border-radius: var(--radius-md);
   overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.case-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.case-card-img {
+  overflow: hidden;
+  aspect-ratio: 4/3;
+}
+
+.case-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.case-card:hover .case-img {
+  transform: scale(1.04);
 }
 
 .case-card-content {
-  padding: var(--space-md) 0;
+  padding: var(--space-md);
 }
 
 .case-tag {
   display: inline-block;
   font-size: var(--font-size-xs);
-  padding: 0.25rem 0.5rem;
-  background-color: var(--color-border);
+  font-weight: 700;
+  padding: 0.25rem 0.625rem;
+  background: var(--color-primary-50);
+  color: var(--color-primary);
   border-radius: var(--radius-sm);
   margin-bottom: var(--space-xs);
-  font-weight: 700;
+  letter-spacing: 0.05em;
 }
 
 .case-title {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-base);
+  font-weight: 700;
   margin-bottom: var(--space-xs);
+  color: var(--color-primary-950);
+  line-height: 1.5;
 }
 
 .case-meta {
   font-size: var(--font-size-sm);
+  color: var(--color-text-sub);
 }
 
-/* Legal Notice */
+/* =========================================
+   Reason Section
+========================================= */
+.reason-card {
+  padding: var(--space-lg) var(--space-md);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.reason-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+.reason-number {
+  font-family: var(--font-numeric);
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  line-height: 1;
+  margin-bottom: var(--space-sm);
+  letter-spacing: 0;
+}
+.reason-title {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-xs);
+  color: var(--color-primary-950);
+}
+.reason-desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-sub);
+  line-height: 1.85;
+}
+
+/* =========================================
+   Flow Section
+========================================= */
+.flow-step {
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+.step-number {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-numeric);
+  font-size: 1.25rem;
+  font-weight: 700;
+  background: var(--color-primary);
+  color: #fff;
+}
+.step-title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-primary-950);
+  margin-bottom: 0.25rem;
+}
+.step-desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-sub);
+  margin-bottom: 0;
+  line-height: 1.8;
+}
+
+/* =========================================
+   Memorial Section
+========================================= */
+.memorial-img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+  object-fit: cover;
+}
+
+.memorial-features {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.memorial-features li {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--font-size-base);
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.memorial-features li:last-child {
+  border-bottom: none;
+}
+
+/* =========================================
+   Area Section
+========================================= */
+.area-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1rem;
+  border: 1.5px solid var(--color-primary-200);
+  border-radius: var(--radius-md);
+  color: var(--color-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  transition: all var(--transition);
+  background: var(--color-primary-50);
+  min-height: 48px;
+}
+
+.area-link:hover {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+.area-link .arrow {
+  opacity: 0.6;
+}
+
+/* =========================================
+   Final CTA Section
+========================================= */
+.cta-bg-img {
+  object-fit: cover;
+}
+
+/* =========================================
+   Legal Notice
+========================================= */
 .legal-list {
   padding-left: 1.25rem;
   list-style-type: disc;
@@ -134,3 +394,289 @@
   margin-bottom: 0.25rem;
   font-size: var(--font-size-sm);
 }
+
+/* =========================================
+   Scroll Animation Initial States
+   (Phase 2: GSAPで活性化する)
+========================================= */
+.anim-fadeup {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.anim-fadein {
+  opacity: 0;
+}
+
+/* =========================================
+   Phase 4: Horizontal Flow Scroll
+========================================= */
+.flow-horizontal-container {
+  overflow: visible; /* 横スクロールラッパー自体ははみ出し許可（親の.section-flowでhidden） */
+  padding-bottom: 2rem;
+}
+
+.flow-horizontal-wrapper {
+  display: flex;
+  gap: 2rem;
+  width: max-content; /* 中身の幅に合わせて拡張 */
+  padding: 0 5vw; /* 左右に少し余白 */
+}
+
+.flow-step-card {
+  width: 280px;
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  flex-shrink: 0;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .flow-step-card {
+    width: 320px;
+  }
+}
+
+.flow-step-card .step-number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-numeric);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.flow-step-card .step-title {
+  font-size: 1.125rem;
+  margin-bottom: 0.75rem;
+}
+
+.flow-step-card .step-desc {
+  font-size: 0.875rem;
+  line-height: var(--leading-relaxed);
+}
+
+/* =========================================
+   Phase 4: Cinematic Reveal / Parallax
+========================================= */
+.reveal-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  display: block;
+}
+
+/* GSAPでJSロード後に可視化＆アニメーションさせるため、初期状態は透明/クリップ済みに */
+.reveal-wrapper.is-reveal-ready {
+  clip-path: inset(0 100% 0 0); /* 初期は完全に右側へマスク */
+}
+
+.reveal-img {
+  position: relative;
+  transform: scale(1.15); /* パララックスの初期状態（ズームアップ） */
+  transform-origin: center;
+  transition: transform 0.1s ease-out; /* GSAP以外の細かな補間用 */
+}
+
+/* =========================================
+   StatsBanner
+========================================= */
+.stats-banner {
+  background: var(--color-primary);
+  padding: 2rem 0;
+}
+
+.stats-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .stats-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.375rem;
+  padding: 0.75rem 0.5rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.stat-item:last-child {
+  border-right: none;
+}
+
+@media (max-width: 767px) {
+  .stat-item:nth-child(2n) {
+    border-right: none;
+  }
+}
+
+.stat-value {
+  font-family: var(--font-numeric);
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+.stat-suffix {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-left: 0.2em;
+  letter-spacing: 0;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 0.04em;
+}
+
+/* =========================================
+   WaveDivider
+========================================= */
+.wave-divider {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* =========================================
+   BeforeAfterSlider
+========================================= */
+.ba-slider {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  cursor: ew-resize;
+  user-select: none;
+  touch-action: pan-y;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  background: var(--color-bg-section);
+}
+
+.ba-img {
+  position: absolute;
+  inset: 0;
+}
+
+.ba-before {
+  z-index: 2;
+  transition: clip-path 0.05s linear;
+}
+
+.ba-after {
+  z-index: 1;
+}
+
+.ba-label {
+  position: absolute;
+  bottom: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  letter-spacing: 0.05em;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.ba-label-before {
+  left: 8px;
+  background: rgba(30, 79, 102, 0.85);
+  color: #fff;
+}
+
+.ba-label-after {
+  right: 8px;
+  background: rgba(192, 132, 151, 0.9);
+  color: #fff;
+}
+
+.ba-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.ba-line {
+  width: 2px;
+  flex: 1;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+}
+
+.ba-knob {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: ew-resize;
+  pointer-events: all;
+}
+
+/* =========================================
+   Hero 縦書き装飾テキスト
+========================================= */
+.section-hero {
+  position: relative;
+}
+
+.hero-vertical-text {
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  color: var(--color-primary-200);
+  font-weight: 500;
+  opacity: 0.6;
+  pointer-events: none;
+  white-space: nowrap;
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .hero-vertical-text {
+    display: block;
+  }
+}
+
+

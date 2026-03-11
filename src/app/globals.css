@@ -1,23 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap");
-
 :root {
   /* =========================================
-     Color Tokens (案C: Clear & Elegant)
+     Color Tokens — Multi-tone Palette
   ========================================= */
   --color-bg: #ffffff;
-  --color-bg-section: #f8f9fa;
-  --color-text: #2c3e50;
-  --color-text-sub: #6c7a89;
-  --color-border: #e2e8f0;
+  --color-bg-section: #f8f7f5;   /* 温かみのあるオフホワイト */
+  --color-bg-section-2: #f0ede8; /* 交互セクション */
+  --color-text: #1a1a1a;
+  --color-text-sub: #5a6270;
+  --color-border: #e2e0db;
 
-  --color-primary: #2c3e50; /* 落ち着きと重厚感の青墨色 */
-  --color-primary-dark: #1a252f;
-  --color-accent: #c08497; /* ロータスピンク */
+  /* Primary (青墨) — 多段階トーン */
+  --color-primary-950: #0a1e28;
+  --color-primary-900: #0d2e42;
+  --color-primary: #1e4f66;       /* メイン（旧 --color-primary） */
+  --color-primary-dark: #1a252f;  /* 後方互換のため残す */
+  --color-primary-700: #2b6882;
+  --color-primary-600: #3a82a0;
+  --color-primary-200: #c8e6f0;
+  --color-primary-50:  #f0f8fb;
+
+  /* Accent (蓮ピンク) — 多段階トーン */
+  --color-accent-600: #b06080;
+  --color-accent: #c08497;        /* メイン（ロータスピンク） */
   --color-accent-hover: #a56f82;
+  --color-accent-400: #d4a0b2;
+  --color-accent-100: #fce8ee;
 
   --color-warning: #d97706;
   --color-success: #2e8b57;
@@ -26,29 +39,31 @@
   /* =========================================
      Typography Tokens
   ========================================= */
-  --font-family: "Noto Sans JP", sans-serif;
-  --font-size-xs: 0.8125rem; /* 13px */
-  --font-size-sm: 0.9375rem; /* 15px */
-  --font-size-base: 1rem; /* 16px */
-  --font-size-lg: 1.25rem; /* 20px */
-  --font-size-xl: 1.5rem; /* 24px */
-  --font-size-2xl: 2rem; /* 32px */
-  --font-size-3xl: 2.5rem; /* 40px */
-  --line-height: 1.8;
+  --font-body:    "Noto Sans JP", sans-serif;
+  --font-numeric: "Cormorant Garamond", "Noto Sans JP", serif;
+  --font-family:  "Noto Sans JP", sans-serif; /* 後方互換 */
+  --font-size-xs: 0.8125rem;  /* 13px */
+  --font-size-sm: 0.9375rem;  /* 15px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.25rem;    /* 20px */
+  --font-size-xl: 1.5rem;     /* 24px */
+  --font-size-2xl: 2rem;      /* 32px */
+  --font-size-3xl: 2.5rem;    /* 40px */
+  --line-height: 1.85;
 
   /* =========================================
      Spacing & Layout Tokens
   ========================================= */
-  --space-xs: 0.5rem; /* 8px */
-  --space-sm: 1rem; /* 16px */
-  --space-md: 1.5rem; /* 24px */
-  --space-lg: 2.5rem; /* 40px */
-  --space-xl: 4rem; /* 64px */
-  --space-2xl: 6rem; /* 96px */
+  --space-xs: 0.5rem;   /* 8px */
+  --space-sm: 1rem;     /* 16px */
+  --space-md: 1.5rem;   /* 24px */
+  --space-lg: 2.5rem;   /* 40px */
+  --space-xl: 4rem;     /* 64px */
+  --space-2xl: 6rem;    /* 96px */
 
-  --section-py: 5rem; /* 80px */
+  --section-py: 5rem;
   --container-max: 1200px;
-  --container-px: 1.5rem; /* 24px */
+  --container-px: 1.5rem;
 
   /* =========================================
      Effects & Borders Tokens
@@ -57,7 +72,8 @@
   --radius-md: 12px;
   --radius-lg: 16px;
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.09);
+  --shadow-lg: 0 8px 32px rgba(30, 79, 102, 0.14);
   --transition: 0.25s ease;
 }
 
@@ -84,6 +100,13 @@ body {
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@media (min-width: 1024px) {
+  /* PC用マグネティックカーソルのため標準カーソルを非表示 */
+  body, a, button, input, select, textarea {
+    cursor: none !important;
+  }
 }
 
 h1,
@@ -138,6 +161,37 @@ button {
 }
 
 /* =========================================
+   Form Elements — Mobile-safe styles
+========================================= */
+input,
+textarea,
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  font-size: 16px; /* iOS自動ズーム防止 */
+  font-family: var(--font-body);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.875rem 1rem;
+  width: 100%;
+  color: var(--color-text);
+  background: #fff;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(30, 79, 102, 0.12);
+}
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-text-sub);
+  opacity: 0.7;
+}
+
+/* =========================================
    Utility Classes (Optional core utilities)
 ========================================= */
 .text-center {
@@ -180,15 +234,26 @@ button {
 
 @layer components {
   .section-title {
-    @apply text-3xl font-bold text-primary-dark leading-snug;
+    @apply text-3xl font-bold leading-snug;
+    color: var(--color-primary-950);
+    letter-spacing: 0.06em;
   }
   .section-desc {
-    @apply text-text-sub text-lg mt-2;
+    @apply text-lg mt-2;
+    color: var(--color-text-sub);
   }
   .card {
-    @apply bg-white border border-border rounded-2xl overflow-hidden shadow-sm;
+    @apply bg-white border rounded-2xl overflow-hidden;
+    border-color: var(--color-border);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition), transform var(--transition);
+  }
+  .card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
   }
   .legal-list {
-    @apply flex flex-col gap-2 text-sm text-text-sub list-disc list-inside;
+    @apply flex flex-col gap-2 text-sm list-disc list-inside;
+    color: var(--color-text-sub);
   }
 }
