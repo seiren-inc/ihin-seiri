@@ -665,9 +665,9 @@
   text-orientation: mixed;
   font-size: 0.7rem;
   letter-spacing: 0.25em;
-  color: var(--color-primary-200);
-  font-weight: 500;
-  opacity: 0.6;
+  color: var(--color-primary);
+  font-weight: 700;
+  opacity: 0.15;
   pointer-events: none;
   white-space: nowrap;
   display: none;
