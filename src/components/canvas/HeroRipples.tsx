@@ -9,7 +9,7 @@ const RippleShaderMaterial = {
     uTime: { value: 0 },
     uMouse: { value: new THREE.Vector2(0.5, 0.5) },
     uResolution: { value: new THREE.Vector2() },
-    uColor: { value: new THREE.Color('#e8f1f5') }, // 明るい淡い青（白背景に馴染むベース色）
+    uColor: { value: new THREE.Color('#071b24') }, // 奥深いダークネイビー（極上の暗背景）
   },
   vertexShader: `
     varying vec2 vUv;
@@ -38,12 +38,12 @@ const RippleShaderMaterial = {
       float ripple = sin(dist * 15.0 - uTime * 2.0) * 0.5 + 0.5;
       ripple *= exp(-dist * 2.0);
 
-      // ベースカラーから、波紋部分だけをほのかに濃い「青墨色」へ
-      vec3 rippleColor = vec3(0.5, 0.65, 0.75); 
-      vec3 finalColor = mix(uColor, rippleColor, ripple * 0.4);
+      // 暗闇に浮かび上がる、ほのかな青の光
+      vec3 rippleColor = vec3(0.12, 0.31, 0.40); // primary色ベースのハイライト
+      vec3 finalColor = mix(uColor, rippleColor, ripple * 0.7);
 
-      // 端に行くほど自然に白(透明)へフェードアウト
-      float alpha = 1.0 - smoothstep(0.1, 1.4, distance(vUv, vec2(0.5)));
+      // 端に行くほどベースアルファを0にして自然にFadeさせる
+      float alpha = 1.0 - smoothstep(0.2, 1.5, distance(vUv, vec2(0.5)));
 
       gl_FragColor = vec4(finalColor, alpha);
     }
