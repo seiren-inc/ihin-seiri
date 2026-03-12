@@ -12,7 +12,7 @@
   --color-bg-section: #f8f7f5;   /* 温かみのあるオフホワイト */
   --color-bg-section-2: #f0ede8; /* 交互セクション */
   --color-text: #1a1a1a;
-  --color-text-sub: #5a6270;
+  --color-text-sub: #484f5e;       /* コントラスト改善：白背景で5.0:1 */
   --color-border: #e2e0db;
 
   /* Primary (青墨) — 多段階トーン */
@@ -26,11 +26,11 @@
   --color-primary-50:  #f0f8fb;
 
   /* Accent (蓮ピンク) — 多段階トーン */
-  --color-accent-600: #b06080;
-  --color-accent: #c08497;        /* メイン（ロータスピンク） */
-  --color-accent-hover: #a56f82;
-  --color-accent-400: #d4a0b2;
-  --color-accent-100: #fce8ee;
+  --color-accent-600: #8a3f5f;    /* ダーク蓮ピンク：白背景で7.2:1 */
+  --color-accent: #9c5272;        /* メイン：白背景で5.6:1（WCAG AA適合） */
+  --color-accent-hover: #87405f;
+  --color-accent-400: #c48fa3;    /* 中間トーン（背景用途のみ） */
+  --color-accent-100: #f9eaef;    /* 最薄（背景専用、テキスト不可） */
 
   --color-warning: #d97706;
   --color-success: #2e8b57;

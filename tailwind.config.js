@@ -8,22 +8,35 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // CSS変数トークンと同じ値を Tailwind クラスとしても使えるようにマッピング
+        // =====================================================
+        // globals.css の CSS変数トークンと完全一致で管理
+        // =====================================================
         background: '#ffffff',
-        'bg-section': '#f8f9fa',
+        'bg-section': '#f8f7f5',
+        'bg-light': '#f0ede8',
         primary: {
-          DEFAULT: '#2c3e50',
-          dark: '#1a252f',
+          DEFAULT: '#1e4f66',   // --color-primary
+          dark: '#1a252f',      // --color-primary-dark
+          950:  '#0a1e28',
+          900:  '#0d2e42',
+          700:  '#2b6882',
+          600:  '#3a82a0',
+          200:  '#c8e6f0',
+          50:   '#f0f8fb',
         },
         accent: {
-          DEFAULT: '#c08497',
-          hover: '#a56f82',
+          DEFAULT: '#9c5272',   // --color-accent（コントラスト改善済み）
+          600:    '#8a3f5f',    // --color-accent-600
+          hover:  '#87405f',   // --color-accent-hover
+          400:    '#c48fa3',   // --color-accent-400（背景用）
+          100:    '#f9eaef',   // --color-accent-100（背景専用）
         },
         text: {
-          DEFAULT: '#2c3e50',
-          sub: '#6c7a89',
+          DEFAULT: '#1a1a1a',  // --color-text
+          sub:    '#484f5e',   // --color-text-sub（コントラスト改善済み）
         },
-        border: '#e2e8f0',
+        border: '#e2e0db',
+
       },
       fontFamily: {
         sans: ['"Noto Sans JP"', 'sans-serif'],
