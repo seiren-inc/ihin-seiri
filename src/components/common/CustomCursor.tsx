@@ -22,6 +22,12 @@ export function CustomCursor() {
 
     let isVisible = false;
 
+    // quickToは再利用可能な高速セッターを生成する（毎フレームのアニメーション生成負荷をゼロにする）
+    const xToDot = gsap.quickTo(dot, "x", { duration: 0.1, ease: 'power2.out' });
+    const yToDot = gsap.quickTo(dot, "y", { duration: 0.1, ease: 'power2.out' });
+    const xToOutline = gsap.quickTo(outline, "x", { duration: 0.4, ease: 'power3.out' });
+    const yToOutline = gsap.quickTo(outline, "y", { duration: 0.4, ease: 'power3.out' });
+
     // マウス移動リスナー
     const onMouseMove = (e: MouseEvent) => {
       if (!isVisible) {
@@ -30,22 +36,10 @@ export function CustomCursor() {
       }
 
       const { clientX, clientY } = e;
-
-      // ドットは即座に追従
-      gsap.to(dot, {
-        x: clientX,
-        y: clientY,
-        duration: 0.1,
-        ease: 'power2.out',
-      });
-
-      // アウトラインは少し遅れて追従
-      gsap.to(outline, {
-        x: clientX,
-        y: clientY,
-        duration: 0.4,
-        ease: 'power3.out',
-      });
+      xToDot(clientX);
+      yToDot(clientY);
+      xToOutline(clientX);
+      yToOutline(clientY);
     };
 
     // ホバーエフェクトリスナー（.magnet クラスを持つ要素）

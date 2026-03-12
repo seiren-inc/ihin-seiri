@@ -15,8 +15,8 @@ export function ScrollAnimations() {
       gsap.utils.toArray<HTMLElement>('.section-title').forEach((el) => {
         gsap.from(el, {
           opacity: 0,
-          y: 30,
-          duration: 0.85,
+          y: 20, // 移動量を減らしてキビキビと
+          duration: 0.6, // 0.85 -> 0.6
           ease: 'power3.out',
           scrollTrigger: {
             trigger: el,
@@ -31,9 +31,9 @@ export function ScrollAnimations() {
       if (serviceCards.length > 0) {
         gsap.from(serviceCards, {
           opacity: 0,
-          y: 40,
-          duration: 0.8,
-          stagger: 0.15,
+          y: 30,
+          duration: 0.5, // 0.8 -> 0.5
+          stagger: 0.1,  // 0.15 -> 0.1
           ease: 'power3.out',
           scrollTrigger: {
             trigger: '.section-services',
@@ -48,10 +48,10 @@ export function ScrollAnimations() {
       if (caseCards.length > 0) {
         gsap.from(caseCards, {
           opacity: 0,
-          y: 40,
-          scale: 0.97,
-          duration: 0.7,
-          stagger: 0.18,
+          y: 30,
+          scale: 0.98,
+          duration: 0.5, // 0.7 -> 0.5
+          stagger: 0.1,  // 0.18 -> 0.1
           ease: 'power2.out',
           scrollTrigger: {
             trigger: '.section-cases',
@@ -66,9 +66,9 @@ export function ScrollAnimations() {
       if (reasonCards.length > 0) {
         gsap.from(reasonCards, {
           opacity: 0,
-          x: -30,
-          duration: 0.75,
-          stagger: 0.2,
+          x: -20,
+          duration: 0.6, // 0.75 -> 0.6
+          stagger: 0.12, // 0.2 -> 0.12
           ease: 'power3.out',
           scrollTrigger: {
             trigger: '.section-reasons',
@@ -109,10 +109,10 @@ export function ScrollAnimations() {
       if (heroVisual) {
         gsap.from(heroVisual, {
           opacity: 0,
-          x: 40,
-          duration: 1.0,
+          x: 20,
+          duration: 0.8, // 1.0 -> 0.8
           ease: 'power3.out',
-          delay: 0.3,
+          delay: 0.1,    // 0.3 -> 0.1
         });
       }
 
@@ -127,11 +127,11 @@ export function ScrollAnimations() {
       if (heroEls.length > 0) {
         gsap.from(heroEls, {
           opacity: 0,
-          y: 22,
-          duration: 0.75,
-          stagger: 0.12,
+          y: 15,
+          duration: 0.6, // 0.75 -> 0.6
+          stagger: 0.08, // 0.12 -> 0.08
           ease: 'power3.out',
-          delay: 0.1,
+          delay: 0,      // 0.1 -> 0
         });
       }
 
@@ -141,7 +141,7 @@ export function ScrollAnimations() {
         gsap.from(trustContent, {
           opacity: 0,
           y: 20,
-          duration: 0.85,
+          duration: 0.6, // 0.85 -> 0.6
           ease: 'power3.out',
           scrollTrigger: {
             trigger: '.section-trust',
@@ -156,8 +156,8 @@ export function ScrollAnimations() {
       if (memorialContent) {
         gsap.from(memorialContent, {
           opacity: 0,
-          x: -30,
-          duration: 0.85,
+          x: -20,
+          duration: 0.6, // 0.85 -> 0.6
           ease: 'power3.out',
           scrollTrigger: {
             trigger: '.section-memorial',
@@ -187,19 +187,37 @@ export function ScrollAnimations() {
         // 1. ラッパー自体のマスクが開示される（左から右へ）
         tl.to(wrapper, {
           clipPath: 'inset(0 0% 0 0)',
-          duration: 1.2,
+          duration: 0.8, // 1.2 -> 0.8
           ease: 'power4.inOut',
         });
 
         // 2. と同時に、中の画像が少し奥から手前へズームダウンする（パララックス効果）
         if (img) {
-          gsap.set(img, { scale: 1.15 });
+          gsap.set(img, { scale: 1.1 });
           tl.to(img, {
             scale: 1,
-            duration: 1.6,
+            duration: 1.2, // 1.6 -> 1.2
             ease: 'power3.out',
-          }, '<0.2'); // マスクが開示されて少し遅れてスケールアニメーションが目に入る
+          }, '<0.1'); // 0.2 -> 0.1
         }
+      });
+      
+      // ⑪ 汎用アニメーションクラス .anim-fadeup に対する処理を追加 (バグ修正)
+      // 下層ページの各要素がスクロールに応じてキビキビとフェードインするようになる
+      gsap.utils.toArray<HTMLElement>('.anim-fadeup').forEach((el) => {
+        // すでに個別のScrollTriggerが設定されている要素（= 親要素経由などでトリガー済みの可能性があるもの）は除外しても良いが、
+        // 現状 .anim-fadeup クラスがついている要素は個別のScrollTriggerが未設定のものばかりなので直接初期化
+        gsap.from(el, {
+          opacity: 0,
+          y: 24,
+          duration: 0.5,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 90%',
+            toggleActions: 'play none none none',
+          },
+        });
       });
     });
 

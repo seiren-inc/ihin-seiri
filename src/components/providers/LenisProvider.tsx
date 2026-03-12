@@ -17,13 +17,12 @@ export function LenisProvider({ children }: LenisProviderProps) {
   useEffect(() => {
     // Initialize Lenis
     const lenis = new Lenis({
-      duration: 1.4,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      lerp: 0.1, // 慣性の強さ（0.1で軽快に）
+      wheelMultiplier: 1.0,
+      touchMultiplier: 2.0,
+      smoothWheel: true,
       orientation: "vertical",
       gestureOrientation: "vertical",
-      smoothWheel: true,
-      wheelMultiplier: 0.9,
-      touchMultiplier: 2,
     });
 
     lenisRef.current = lenis;
