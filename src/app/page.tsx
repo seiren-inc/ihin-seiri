@@ -135,7 +135,7 @@ export default function Home() {
       <section className="section-simulation text-white section-py-md" style={{ background: 'var(--color-primary)' }}>
         <div className="container text-center">
           <h2 className="section-title text-white">料金の目安がすぐにわかります</h2>
-          <p className="section-desc text-white opacity-80">間取りや荷物量を選択するだけで、おおよその作業料金を事前にご確認いただけます。</p>
+          <p className="section-desc text-white opacity-90">間取りや荷物量を選択するだけで、おおよその作業料金を事前にご確認いただけます。</p>
           <div className="mt-lg">
             <Button href="/simulation" variant="accent" size="lg">料金シミュレーションを試す</Button>
           </div>
@@ -255,7 +255,7 @@ export default function Home() {
         <div className="container grid grid-cols-1 md:grid-cols-2 items-center gap-xl relative z-20">
           <div className="memorial-content">
             <h2 className="section-title" style={{ color: '#fff' }}>供養・終活のご相談も<br />お任せください</h2>
-            <p className="section-desc mb-lg" style={{ color: 'rgba(255,255,255,0.8)', marginTop: '1rem' }}>
+            <p className="section-desc mb-lg" style={{ color: 'rgba(255,255,255,0.9)', marginTop: '1rem' }}>
               清蓮は遺品整理だけでなく、お仏壇やご遺骨の供養、永代供養墓・樹木葬の紹介など「終活プラットフォーム」としてのお手伝いも可能です。
             </p>
             <ul className="memorial-features mt-md mb-lg">
@@ -340,7 +340,7 @@ export default function Home() {
         </div>
         <div className="container text-center text-white" style={{ position: 'relative', zIndex: 1, padding: '4rem 0' }}>
           <h2 className="section-title" style={{ color: '#fff', fontSize: '2.5rem', marginBottom: '1rem', letterSpacing: '0.05em' }}>ご相談・お見積りは無料です</h2>
-          <p className="section-desc" style={{ color: 'rgba(255,255,255,0.85)', marginBottom: '2.5rem' }}>
+          <p className="section-desc" style={{ color: 'rgba(255,255,255,0.9)', marginBottom: '2.5rem' }}>
             まずはお気軽にお電話またはWebフォームからお問い合わせください。<br/>専門スタッフが丁寧に対応いたします。
           </p>
           <div className="flex flex-col md-flex-row gap-md justify-center mt-lg">

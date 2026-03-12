@@ -42,7 +42,7 @@ export function SiteHeader() {
           <div className="flex flex-col">
             <Link href="/" className="flex flex-col">
               <span className="text-2xl font-bold text-primary-dark leading-tight">清蓮</span>
-              <span className="text-xs text-text-sub">遺品整理サービス</span>
+              <span className="text-[0.8125rem] text-text-sub">遺品整理サービス</span>
             </Link>
           </div>
 

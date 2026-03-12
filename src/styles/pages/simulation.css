@@ -91,7 +91,7 @@
 
 .sim-price-display {
   font-family: var(--font-numeric);
-  color: var(--color-accent-400);
+  color: var(--color-accent-100);   /* 暗背景(primary-dark)上で高コントラスト */
   line-height: 1.2;
   margin-bottom: 2rem;
 }

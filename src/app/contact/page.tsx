@@ -40,7 +40,7 @@ export default function ContactPage() {
             <div className="card p-md" style={{ padding: '2rem' }}>
               <h3 className="text-primary-dark" style={{ fontSize: '1.25rem', marginBottom: '0.5rem', fontWeight: 700 }}>LINEでのご相談</h3>
               <p className="text-sub mb-sm">写真でお部屋の状況を送信して概算を知りたい方はこちら</p>
-              <Button href="#" variant="outline" className="mt-sm" style={{ borderColor: '#06C755', color: '#06C755' }}>LINEで友だち追加する</Button>
+              <Button href="#" variant="outline" className="mt-sm" style={{ borderColor: '#048540', color: '#048540' }}>LINEで友だち追加する</Button>
             </div>
           </div>
 
@@ -59,17 +59,17 @@ export default function ContactPage() {
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-md">
                 <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  <label htmlFor="name" style={{ fontWeight: 700 }}>お名前 <span style={{ color: 'red', fontSize: '0.75rem' }}>必須</span></label>
+                  <label htmlFor="name" style={{ fontWeight: 700 }}>お名前 <span style={{ color: '#c00', fontSize: '0.8125rem', fontWeight: 700 }}>必須</span></label>
                   <input type="text" id="name" required placeholder="山田 太郎" style={{ padding: '0.75rem', borderRadius: '6px', border: '1px solid var(--color-border)', width: '100%' }} />
                 </div>
                 
                 <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  <label htmlFor="phone" style={{ fontWeight: 700 }}>お電話番号 <span style={{ color: 'red', fontSize: '0.75rem' }}>必須</span></label>
+                  <label htmlFor="phone" style={{ fontWeight: 700 }}>お電話番号 <span style={{ color: '#c00', fontSize: '0.8125rem', fontWeight: 700 }}>必須</span></label>
                   <input type="tel" id="phone" required placeholder="090-0000-0000" style={{ padding: '0.75rem', borderRadius: '6px', border: '1px solid var(--color-border)', width: '100%' }} />
                 </div>
                 
                 <div className="form-group" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  <label htmlFor="email" style={{ fontWeight: 700 }}>メールアドレス <span style={{ color: 'red', fontSize: '0.75rem' }}>必須</span></label>
+                  <label htmlFor="email" style={{ fontWeight: 700 }}>メールアドレス <span style={{ color: '#c00', fontSize: '0.8125rem', fontWeight: 700 }}>必須</span></label>
                   <input type="email" id="email" required placeholder="example@email.com" style={{ padding: '0.75rem', borderRadius: '6px', border: '1px solid var(--color-border)', width: '100%' }} />
                 </div>
                 

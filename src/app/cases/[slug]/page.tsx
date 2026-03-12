@@ -138,19 +138,19 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
                     <dd style={{ margin: 0, fontWeight: 700 }}>{caseData.prefecture} {caseData.area}</dd>
                   </div>
                   <div style={{ paddingBottom: '1rem', borderBottom: '1px solid var(--color-border)' }}>
-                    <dt style={{ fontSize: '0.875rem', color: 'var(--color-text-sub)', marginBottom: '0.25rem' }}>間取り</dt>
+                    <dt style={{ fontSize: '0.9375rem', color: 'var(--color-text-sub)', marginBottom: '0.25rem' }}>間取り</dt>
                     <dd style={{ margin: 0, fontWeight: 700 }}>{caseData.roomType}</dd>
                   </div>
                   <div style={{ paddingBottom: '1rem', borderBottom: '1px solid var(--color-border)' }}>
-                    <dt style={{ fontSize: '0.875rem', color: 'var(--color-text-sub)', marginBottom: '0.25rem' }}>ご利用料金</dt>
+                    <dt style={{ fontSize: '0.9375rem', color: 'var(--color-text-sub)', marginBottom: '0.25rem' }}>ご利用料金</dt>
                     <dd style={{ margin: 0, fontWeight: 800, color: 'var(--color-accent)', fontSize: '1.25rem' }}>{caseData.priceBand}</dd>
                   </div>
                   <div style={{ paddingBottom: '1rem', borderBottom: '1px solid var(--color-border)' }}>
-                    <dt style={{ fontSize: '0.875rem', color: 'var(--color-text-sub)', marginBottom: '0.25rem' }}>作業時間</dt>
+                    <dt style={{ fontSize: '0.9375rem', color: 'var(--color-text-sub)', marginBottom: '0.25rem' }}>作業時間</dt>
                     <dd style={{ margin: 0, fontWeight: 700 }}>{caseData.workTime} （作業員{caseData.workerCount}名）</dd>
                   </div>
                   <div>
-                    <dt style={{ fontSize: '0.875rem', color: 'var(--color-text-sub)', marginBottom: '0.25rem' }}>特記事項</dt>
+                    <dt style={{ fontSize: '0.9375rem', color: 'var(--color-text-sub)', marginBottom: '0.25rem' }}>特記事項</dt>
                     <dd style={{ margin: 0, fontWeight: 700, display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                       {caseData.tags.map((tag) => (
                         <span key={tag} className="tag" style={{ fontSize: '0.75rem', padding: '0.25rem 0.5rem', background: 'var(--color-bg-section)', borderRadius: '4px' }}>{tag}</span>

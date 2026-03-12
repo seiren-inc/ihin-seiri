@@ -70,7 +70,7 @@ export default async function ServicesPage() {
               </div>
               <div className="service-content">
                 <h2 className="section-title text-primary-dark mb-sm" style={{ fontSize: '2rem' }}>{service.title}</h2>
-                <h3 className="text-accent-600 mb-md" style={{ fontSize: '1.25rem', fontWeight: 700 }}>{service.heroTitle}</h3>
+                <h3 className="text-primary mb-md" style={{ fontSize: '1.25rem', fontWeight: 700 }}>{service.heroTitle}</h3>
                 <p className="text-sub mb-lg text-lg leading-relaxed">{service.heroDescription}</p>
                 <h4 className="text-primary font-bold mb-xs">■ 主な特徴</h4>
                 <ul className="legal-list mb-xl text-sub">

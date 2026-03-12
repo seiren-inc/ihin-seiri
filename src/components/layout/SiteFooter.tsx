@@ -9,7 +9,7 @@ export function SiteFooter() {
           <div>
             <div className="flex flex-col mb-4">
               <span className="text-2xl font-bold text-white leading-tight">清蓮</span>
-              <span className="text-xs text-white/60">遺品整理サービス</span>
+              <span className="text-[0.8125rem] text-white/70">遺品整理サービス</span>
             </div>
             <p className="text-sm text-white/80 leading-relaxed">
               関東全域対応の遺品整理・特殊清掃・供養相談。安心と信頼の終活サポートを提供します。
@@ -75,7 +75,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-16 pt-6 border-t border-white/10 text-center text-sm text-white/60">
+        <div className="mt-16 pt-6 border-t border-white/10 text-center text-sm text-white/70">
           <p>&copy; {new Date().getFullYear()} 清蓮 遺品整理サービス All Rights Reserved.</p>
         </div>
       </div>

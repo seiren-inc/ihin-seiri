@@ -48,7 +48,7 @@ export default function PricingPage() {
               </tbody>
             </table>
           </div>
-          <p className="text-sub mt-sm" style={{ fontSize: '0.875rem' }}>※上記はあくまで目安です。買取可能な品物がある場合は、お見積り金額から差し引かせていただきます。</p>
+          <p className="text-sub mt-sm" style={{ fontSize: '0.9375rem' }}>※上記はあくまで目安です。買取可能な品物がある場合は、お見積り金額から差し引かせていただきます。</p>
         </div>
       </section>
 
