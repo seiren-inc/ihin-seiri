@@ -1,16 +1,27 @@
 import { NoticeBox } from '@/components/common/NoticeBox';
 import { getCombinedLegalNotice } from '@/data/legal';
 
+import { JsonLd, generateBreadcrumbSchema } from '@/components/seo/JsonLd';
+
 export const metadata = {
   title: '運営者情報 | 清蓮｜遺品整理サービス',
   description: '清蓮（遺品整理サービス）の運営者情報をご案内します。',
+  alternates: { canonical: '/operator' },
+  openGraph: { url: '/operator' },
 };
 
 export default function OperatorPage() {
   const legalNotices = getCombinedLegalNotice();
 
   return (
-    <div className="page-operator">
+    <>
+      <JsonLd data={[
+        generateBreadcrumbSchema([
+          { name: 'ホーム', item: '/' },
+          { name: '運営者情報', item: '/operator' },
+        ])
+      ]} />
+      <div className="page-operator">
       <div className="bg-section section-py-md">
         <div className="container text-center">
           <h1 className="section-title">運営者情報</h1>
@@ -61,5 +72,6 @@ export default function OperatorPage() {
         </section>
       </div>
     </div>
+    </>
   );
 }

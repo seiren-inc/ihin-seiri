@@ -8,6 +8,7 @@ import { PageHero } from '@/components/layout/PageHero';
 import Link from 'next/link';
 import { NoticeBox } from '@/components/common/NoticeBox';
 import { getCombinedLegalNotice } from '@/data/legal';
+import { JsonLd, generateBreadcrumbSchema } from '@/components/seo/JsonLd';
 
 export async function generateStaticParams() {
   return supportedAreas.map(area => ({
@@ -23,6 +24,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${area.prefecture}の遺品整理・ゴミ屋敷清掃・特殊清掃 | 清蓮`,
     description: `${area.prefecture}全域対応。${area.prefecture}での遺品整理、ゴミ屋敷の片付け、特殊清掃なら清蓮にお任せください。最短即日見積もり対応。`,
+    alternates: { canonical: `/areas/${slug}` },
+    openGraph: {
+      url: `/areas/${slug}`,
+    },
   };
 }
 
@@ -39,12 +44,20 @@ export default async function AreaDetailPage({ params }: { params: Promise<{ slu
   const areaCases = caseStudies.filter(c => c.prefecture.includes(area.prefecture) && c.published).slice(0, 3);
 
   return (
-    <div className="page-area-detail">
-      <PageHero
-        title={`${area.prefecture}の遺品整理・ゴミ屋敷清掃・特殊清掃`}
-        description={`${area.prefecture}内全域、最短即日で無料訪問お見積りに伺います。ご遺族の負担を軽減し、安心・丁寧なサポートをご提供します。`}
-        backgroundImage="/images/hero-main.png"
-      />
+    <>
+      <JsonLd data={[
+        generateBreadcrumbSchema([
+          { name: 'ホーム', item: '/' },
+          { name: '対応エリア', item: '/areas' },
+          { name: area.prefecture, item: `/areas/${slug}` },
+        ])
+      ]} />
+      <div className="page-area-detail">
+        <PageHero
+          title={`${area.prefecture}の遺品整理・ゴミ屋敷清掃・特殊清掃`}
+          description={`${area.prefecture}内全域、最短即日で無料訪問お見積りに伺います。ご遺族の負担を軽減し、安心・丁寧なサポートをご提供します。`}
+          backgroundImage="/images/hero-main.png"
+        />
 
       <div className="container section-py-lg">
         {/* SEO Content Text */}
@@ -133,5 +146,6 @@ export default async function AreaDetailPage({ params }: { params: Promise<{ slu
         </div>
       </section>
     </div>
+    </>
   );
 }

@@ -1,16 +1,27 @@
 import { NoticeBox } from '@/components/common/NoticeBox';
 import { getCombinedLegalNotice } from '@/data/legal';
 
+import { JsonLd, generateBreadcrumbSchema } from '@/components/seo/JsonLd';
+
 export const metadata = {
   title: '特定商取引法に基づく表記 | 清蓮｜遺品整理サービス',
   description: '清蓮（遺品整理サービス）の特定商取引法に基づく表記をご案内します。',
+  alternates: { canonical: '/legal' },
+  openGraph: { url: '/legal' },
 };
 
 export default function LegalDisclosurePage() {
   const legalNotices = getCombinedLegalNotice();
 
   return (
-    <div className="page-legal-disclosure">
+    <>
+      <JsonLd data={[
+        generateBreadcrumbSchema([
+          { name: 'ホーム', item: '/' },
+          { name: '特定商取引法に基づく表記', item: '/legal' },
+        ])
+      ]} />
+      <div className="page-legal-disclosure">
       <div className="bg-section section-py-md">
         <div className="container text-center">
           <h1 className="section-title">特定商取引法に基づく表記</h1>
@@ -101,5 +112,6 @@ export default function LegalDisclosurePage() {
 
       </div>
     </div>
+    </>
   );
 }

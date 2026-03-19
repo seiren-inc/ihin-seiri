@@ -5,10 +5,17 @@ import { NoticeBox } from '@/components/common/NoticeBox';
 import { getCombinedLegalNotice } from '@/data/legal';
 import { fetchServices } from '@/lib/microcms';
 import { services as staticServices } from '@/data/services';
+import { JsonLd, generateBreadcrumbSchema } from '@/components/seo/JsonLd';
 
 export const metadata = {
   title: 'サービス一覧 | 清蓮｜遺品整理サービス',
   description: '清蓮が提供する遺品整理、ゴミ清掃、特殊清掃等のサービス一覧です。関東全域で安心のサポートを提供いたします。',
+  alternates: {
+    canonical: '/services',
+  },
+  openGraph: {
+    url: '/services',
+  },
 };
 
 export const revalidate = 60;
@@ -46,7 +53,14 @@ export default async function ServicesPage() {
       }));
 
   return (
-    <div className="page-services">
+    <>
+      <JsonLd data={[
+        generateBreadcrumbSchema([
+          { name: 'ホーム', item: '/' },
+          { name: 'サービス一覧', item: '/services' },
+        ])
+      ]} />
+      <div className="page-services">
       <PageHero
         title="サービス一覧"
         description="ご遺族様の負担を軽減し、前を向くための環境づくりをサポートする清蓮の各サービスをご紹介します。"
@@ -97,5 +111,6 @@ export default async function ServicesPage() {
         </div>
       </section>
     </div>
+    </>
   );
 }

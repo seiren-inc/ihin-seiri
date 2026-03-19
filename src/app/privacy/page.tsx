@@ -1,11 +1,22 @@
+import { JsonLd, generateBreadcrumbSchema } from '@/components/seo/JsonLd';
+
 export const metadata = {
   title: 'プライバシーポリシー | 清蓮｜遺品整理サービス',
   description: '清蓮（遺品整理サービス）の個人情報保護方針をご案内します。',
+  alternates: { canonical: '/privacy' },
+  openGraph: { url: '/privacy' },
 };
 
 export default function PrivacyPage() {
   return (
-    <div className="page-privacy">
+    <>
+      <JsonLd data={[
+        generateBreadcrumbSchema([
+          { name: 'ホーム', item: '/' },
+          { name: 'プライバシーポリシー', item: '/privacy' },
+        ])
+      ]} />
+      <div className="page-privacy">
       <div className="bg-section section-py-md">
         <div className="container text-center">
           <h1 className="section-title">プライバシーポリシー</h1>
@@ -62,5 +73,6 @@ export default function PrivacyPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

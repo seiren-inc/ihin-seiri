@@ -3,16 +3,27 @@ import { Button } from '@/components/common/Button';
 import { NoticeBox } from '@/components/common/NoticeBox';
 import { getCombinedLegalNotice } from '@/data/legal';
 
+import { JsonLd, generateBreadcrumbSchema } from '@/components/seo/JsonLd';
+
 export const metadata = {
   title: '料金案内 | 清蓮｜遺品整理サービス',
-  description: '遺品整理・特殊清掃の基本料金と、追加費用がかかるケースについて分かりやすくご案内します。',
+  description: '遺品整理・特殊清掃の基本料金と、追加費用がかかるケースについて分かりやすくご案内します。明朗会計で安心のサービスを提供します。',
+  alternates: { canonical: '/pricing' },
+  openGraph: { url: '/pricing' },
 };
 
 export default function PricingPage() {
   const legalNotices = getCombinedLegalNotice();
 
   return (
-    <div className="page-pricing">
+    <>
+      <JsonLd data={[
+        generateBreadcrumbSchema([
+          { name: 'ホーム', item: '/' },
+          { name: '料金案内', item: '/pricing' },
+        ])
+      ]} />
+      <div className="page-pricing">
       <div className="bg-section section-py-md">
         <div className="container text-center">
           <h1 className="section-title">料金案内</h1>
@@ -97,5 +108,6 @@ export default function PricingPage() {
         </div>
       </section>
     </div>
+    </>
   );
 }

@@ -6,6 +6,7 @@ import { fetchCaseStudyBySlug, fetchAllCaseSlugs } from '@/lib/microcms';
 // CMS未設定時のフォールバック
 import { caseStudies as staticCaseStudies } from '@/data/cases';
 import { services } from '@/data/services';
+import { JsonLd, generateBreadcrumbSchema } from '@/components/seo/JsonLd';
 
 export const revalidate = 60;
 
@@ -24,6 +25,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {
       title: `${cmsCase.title} | 施工事例 | 清蓮`,
       description: cmsCase.summary,
+      alternates: { canonical: `/cases/${slug}` },
+      openGraph: {
+        url: `/cases/${slug}`,
+        images: cmsCase.afterImage?.url ? [{ url: cmsCase.afterImage.url }] : [],
+      },
     };
   }
 
@@ -32,6 +38,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${staticCase.title} | 施工事例 | 清蓮`,
     description: staticCase.summary,
+    alternates: { canonical: `/cases/${slug}` },
+    openGraph: {
+      url: `/cases/${slug}`,
+      images: staticCase.afterImagePlaceholder ? [{ url: staticCase.afterImagePlaceholder }] : [],
+    },
   };
 }
 
@@ -88,7 +99,22 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
   const service = services.find((s) => s.id === caseData.serviceType);
 
   return (
-    <div className="page-case-detail">
+    <>
+      <JsonLd data={[
+        generateBreadcrumbSchema([
+          { name: 'ホーム', item: '/' },
+          { name: '施工事例', item: '/cases' },
+          { name: caseData.title, item: `/cases/${slug}` },
+        ]),
+        {
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: caseData.title,
+          image: caseData.afterImageSrc,
+          description: caseData.summary,
+        }
+      ]} />
+      <div className="page-case-detail">
       <PageHero
         title={caseData.title}
         description={`サービス：${service?.title || ''} ｜ エリア：${caseData.prefecture}${caseData.area}`}
@@ -172,5 +198,6 @@ export default async function CaseDetailPage({ params }: { params: Promise<{ slu
         </div>
       </div>
     </div>
+    </>
   );
 }

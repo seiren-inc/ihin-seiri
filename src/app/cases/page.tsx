@@ -6,9 +6,17 @@ import { fetchCaseStudies } from '@/lib/microcms';
 // CMS未設定時のフォールバック
 import { caseStudies as staticCaseStudies } from '@/data/cases';
 
+import { JsonLd, generateBreadcrumbSchema } from '@/components/seo/JsonLd';
+
 export const metadata = {
   title: '施工事例 | 清蓮｜遺品整理サービス',
   description: '遺品整理、ゴミ清掃、特殊清掃の施工事例をご紹介します。参考料金や作業時間なども掲載しています。',
+  alternates: {
+    canonical: '/cases',
+  },
+  openGraph: {
+    url: '/cases',
+  },
 };
 
 // ISR: 60秒ごとに再生成（CMS更新が自動反映される）
@@ -49,7 +57,14 @@ export default async function CasesPage() {
         }));
 
   return (
-    <div className="bg-background">
+    <>
+      <JsonLd data={[
+        generateBreadcrumbSchema([
+          { name: 'ホーム', item: '/' },
+          { name: '施工事例', item: '/cases' },
+        ])
+      ]} />
+      <div className="bg-background">
       <PageHero
         title="施工事例"
         description="ご遺族様に寄り添い、丁寧に向き合わせていただいた清蓮の施工事例をご紹介します。"
@@ -125,5 +140,6 @@ export default async function CasesPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

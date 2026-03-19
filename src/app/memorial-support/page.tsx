@@ -4,16 +4,27 @@ import { PageHero } from '@/components/layout/PageHero';
 import { NoticeBox } from '@/components/common/NoticeBox';
 import { getCombinedLegalNotice } from '@/data/legal';
 
+import { JsonLd, generateBreadcrumbSchema } from '@/components/seo/JsonLd';
+
 export const metadata = {
   title: '供養連携・終活サポート | 清蓮｜遺品整理サービス',
   description: '清蓮は遺品整理だけでなく、お仏壇の合同供養やお焚き上げ、墓じまいなどの終活サポートも承っております。',
+  alternates: { canonical: '/memorial-support' },
+  openGraph: { url: '/memorial-support' },
 };
 
 export default function MemorialSupportPage() {
   const legalNotices = getCombinedLegalNotice();
 
   return (
-    <div className="page-memorial">
+    <>
+      <JsonLd data={[
+        generateBreadcrumbSchema([
+          { name: 'ホーム', item: '/' },
+          { name: '供養・終活サポート', item: '/memorial-support' },
+        ])
+      ]} />
+      <div className="page-memorial">
       <PageHero
         title="供養連携・終活サポート"
         description="単なるお片付けで終わらせない。ご遺族のお気持ちに寄り添い、「想いを納める」お手伝いをいたします。"
@@ -88,5 +99,6 @@ export default function MemorialSupportPage() {
         </div>
       </section>
     </div>
+    </>
   );
 }

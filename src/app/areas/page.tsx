@@ -4,14 +4,25 @@ import { Button } from '@/components/common/Button';
 import Image from 'next/image';
 import { PageHero } from '@/components/layout/PageHero';
 
+import { JsonLd, generateBreadcrumbSchema } from '@/components/seo/JsonLd';
+
 export const metadata = {
   title: '対応エリア | 清蓮｜遺品整理サービス',
   description: '清蓮の遺品整理・ゴミ清掃・特殊清掃の対応エリア（関東全域）をご案内します。',
+  alternates: { canonical: '/areas' },
+  openGraph: { url: '/areas' },
 };
 
 export default function AreasPage() {
   return (
-    <div className="page-areas">
+    <>
+      <JsonLd data={[
+        generateBreadcrumbSchema([
+          { name: 'ホーム', item: '/' },
+          { name: '対応エリア', item: '/areas' },
+        ])
+      ]} />
+      <div className="page-areas">
       <PageHero
         title="対応エリア"
         description="清蓮の遺品整理・ゴミ清掃・特殊清掃サービスは関東全域に対応しております。最短即日でのご訪問も可能です。"
@@ -51,5 +62,6 @@ export default function AreasPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

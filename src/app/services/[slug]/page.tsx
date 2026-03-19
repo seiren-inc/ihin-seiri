@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { PageHero } from '@/components/layout/PageHero';
 import { NoticeBox } from '@/components/common/NoticeBox';
 import { getCombinedLegalNotice } from '@/data/legal';
+import { JsonLd, generateBreadcrumbSchema } from '@/components/seo/JsonLd';
 
 export async function generateStaticParams() {
   return services.map((service) => ({
@@ -20,6 +21,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${service.title} | 清蓮｜遺品整理サービス`,
     description: service.heroDescription,
+    alternates: { canonical: `/services/${slug}` },
+    openGraph: {
+      url: `/services/${slug}`,
+      images: [{ url: `/images/service-${service.id}.png` }],
+    },
   };
 }
 
@@ -33,15 +39,37 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   }
 
   return (
-    <div className="page-service-detail">
-      <PageHero
-        title={service.title}
-        description={service.heroTitle}
-        backgroundImage={`/images/service-${service.id}.png`}
-      />
+    <>
+      <JsonLd data={[
+        generateBreadcrumbSchema([
+          { name: 'ホーム', item: '/' },
+          { name: 'サービス一覧', item: '/services' },
+          { name: service.title, item: `/services/${slug}` },
+        ]),
+        {
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: service.title,
+          description: service.heroDescription,
+          provider: {
+            '@type': 'LocalBusiness',
+            name: '清蓮（せいれん）',
+          },
+          areaServed: {
+            '@type': 'State',
+            name: ['東京都', '神奈川県', '埼玉県', '千葉県', '茨城県', '栃木県', '群馬県']
+          }
+        }
+      ]} />
+      <div className="page-service-detail">
+        <PageHero
+          title={service.title}
+          description={service.heroTitle}
+          backgroundImage={`/images/service-${service.id}.png`}
+        />
 
-      {/* Main Content */}
-      <section className="service-content section-py-lg gap-xl">
+        {/* Main Content */}
+        <section className="service-content section-py-lg gap-xl">
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-xl lg:gap-2xl items-center mb-xl anim-fadeup">
             <div className="visual reveal-wrapper rounded-lg overflow-hidden shadow-lg">
@@ -90,5 +118,6 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
       </section>
     </div>
+    </>
   );
 }

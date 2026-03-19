@@ -4,9 +4,13 @@ import { PageHero } from '@/components/layout/PageHero';
 import { NoticeBox } from '@/components/common/NoticeBox';
 import { getCombinedLegalNotice } from '@/data/legal';
 
+import { JsonLd, generateBreadcrumbSchema } from '@/components/seo/JsonLd';
+
 export const metadata = {
   title: 'ご利用の流れ | 清蓮｜遺品整理サービス',
   description: 'お問い合わせから作業完了までの流れを詳しく解説します。初めての方でも安心してご依頼いただけるよう、専任担当者が一貫サポートいたします。',
+  alternates: { canonical: '/flow' },
+  openGraph: { url: '/flow' },
 };
 
 export default function FlowPage() {
@@ -45,8 +49,29 @@ export default function FlowPage() {
     }
   ];
 
+  const howToSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: '清蓮の遺品整理サービスご利用の流れ',
+    description: 'お問い合わせから作業完了、ご精算までのステップ',
+    step: flows.map((f, i) => ({
+      '@type': 'HowToStep',
+      name: f.title,
+      text: f.desc,
+      url: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.seiren-ihin.jp'}/flow#step-${i + 1}`,
+    }))
+  };
+
   return (
-    <div className="page-flow">
+    <>
+      <JsonLd data={[
+        generateBreadcrumbSchema([
+          { name: 'ホーム', item: '/' },
+          { name: 'ご利用の流れ', item: '/flow' },
+        ]),
+        howToSchema
+      ]} />
+      <div className="page-flow">
       <PageHero
         title="ご利用の流れ"
         description="お問い合わせから作業完了まで、専任担当者が一貫してサポートいたします。初めての方でも安心してご依頼いただけるプロセスを構築しています。"
@@ -109,5 +134,6 @@ export default function FlowPage() {
         </div>
       </section>
     </div>
+    </>
   );
 }

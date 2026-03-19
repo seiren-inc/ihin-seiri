@@ -57,6 +57,38 @@ module.exports = {
       maxWidth: {
         container: '1200px',
       },
+      keyframes: {
+        // 2026: Shimmer — スケルトンローディング・プレミアム感演出
+        shimmer: {
+          '0%':   { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
+        },
+        // 2026: Floating — アイコン・バッジの浮遊感（テック系、摎やかに）
+        floating: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%':      { transform: 'translateY(-8px)' },
+        },
+        // 2026: SlideIn — 左からのキレのあるスライドイン（テック系必須）
+        'slide-in-left': {
+          '0%':   { opacity: '0', transform: 'translateX(-20px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        // 2026: GlowPulse — CTAボタン・リンクのアクセントから
+        'glow-pulse': {
+          '0%, 100%': { boxShadow: '0 0 8px rgba(0, 64, 255, 0.3)' },
+          '50%':      { boxShadow: '0 0 24px rgba(0, 64, 255, 0.7)' },
+        },
+      },
+      animation: {
+        // Shimmer: スケルトンUI・ローディング表示
+        shimmer:         'shimmer 1.8s linear infinite',
+        // Floating: アイコン・バッジの浮遊（テック系は少し速め）
+        floating:        'floating 3.0s ease-in-out infinite',
+        // SlideIn: キレのあるエントランス
+        'slide-in-left': 'slide-in-left 0.4s cubic-bezier(0.16, 1, 0.3, 1) both',
+        // GlowPulse: CTAボタンの誘導グロー
+        'glow-pulse':    'glow-pulse 2.5s ease-in-out infinite',
+      },
     },
   },
   plugins: [],

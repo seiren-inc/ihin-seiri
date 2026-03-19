@@ -4,9 +4,13 @@ import { PageHero } from '@/components/layout/PageHero';
 import { NoticeBox } from '@/components/common/NoticeBox';
 import { getCombinedLegalNotice } from '@/data/legal';
 
+import { JsonLd, generateBreadcrumbSchema } from '@/components/seo/JsonLd';
+
 export const metadata = {
   title: '選ばれる理由 | 清蓮｜遺品整理サービス',
   description: '清蓮がお客様から選ばれる3つの理由（認定遺品整理士の対応、明朗会計、供養サポート）について詳しく解説します。',
+  alternates: { canonical: '/reasons' },
+  openGraph: { url: '/reasons' },
 };
 
 export default function ReasonsPage() {
@@ -37,7 +41,14 @@ export default function ReasonsPage() {
   ];
 
   return (
-    <div className="page-reasons">
+    <>
+      <JsonLd data={[
+        generateBreadcrumbSchema([
+          { name: 'ホーム', item: '/' },
+          { name: '選ばれる理由', item: '/reasons' },
+        ])
+      ]} />
+      <div className="page-reasons">
       <PageHero
         title="清蓮が選ばれる理由"
         description="安心と信頼をお届けするための、私たちのこだわりをご紹介します。ご遺族様のお気持ちに寄り添った対応をお約束いたします。"
@@ -95,5 +106,6 @@ export default function ReasonsPage() {
         </div>
       </section>
     </div>
+    </>
   );
 }

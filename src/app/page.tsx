@@ -13,7 +13,19 @@ import { NoticeBox } from '@/components/common/NoticeBox';
 import { getCombinedLegalNotice } from '@/data/legal';
 import { faqList } from '@/data/faq';
 import { supportedAreas } from '@/data/areas';
+import { JsonLd, generateLocalBusinessSchema } from '@/components/seo/JsonLd';
+import type { Metadata } from 'next';
 import '../styles/pages/home.css';
+
+export const metadata: Metadata = {
+  // title, description等はlayout.tsxのdefaultが継承されるため、ここではトップページ固有の設定のみを上書きする
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    url: '/',
+  },
+};
 
 // サービスアイコン画像パスの対応表
 const serviceImageMap: Record<string, string> = {
@@ -30,7 +42,23 @@ export default function Home() {
   const topFaqs = faqList.slice(0, 4);
 
   return (
-    <div className="page-home">
+    <>
+      {/* 構造化データ（WebSite / LocalBusiness） */}
+      <JsonLd data={[
+        generateLocalBusinessSchema(),
+        {
+          '@context': 'https://schema.org',
+          '@type': 'WebSite',
+          name: '清蓮（せいれん）',
+          url: process.env.NEXT_PUBLIC_BASE_URL || 'https://www.seiren-ihin.jp',
+          potentialAction: {
+            '@type': 'SearchAction',
+            target: `${process.env.NEXT_PUBLIC_BASE_URL || 'https://www.seiren-ihin.jp'}/search?q={search_term_string}`,
+            'query-input': 'required name=search_term_string'
+          }
+        }
+      ]} />
+      <div className="page-home">
       {/* 1. Hero */}
       <section className="section-hero" style={{ zIndex: 1, overflow: 'hidden' }}>
         <HeroRipples />
@@ -365,5 +393,6 @@ export default function Home() {
         </div>
       </section>
     </div>
+    </>
   );
 }

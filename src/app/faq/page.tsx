@@ -3,10 +3,17 @@ import { PageHero } from '@/components/layout/PageHero';
 import { fetchFaqs } from '@/lib/microcms';
 import { faqList as staticFaqList } from '@/data/faq';
 import { FaqAccordionClient } from './FaqAccordionClient';
+import { JsonLd, generateBreadcrumbSchema } from '@/components/seo/JsonLd';
 
 export const metadata = {
   title: 'よくある質問 | 清蓮｜遺品整理サービス',
-  description: '遺品整理・ゴミ清掃・特殊清掃に関するよくある質問（FAQ）をまとめました。',
+  description: '遺品整理・ゴミ清掃・特殊清掃に関するよくある質問（FAQ）をまとめました。料金やサービス内容についてのご不明点はこちらからご確認ください。',
+  alternates: {
+    canonical: '/faq',
+  },
+  openGraph: {
+    url: '/faq',
+  },
 };
 
 // ISR: 60秒ごとに再生成
@@ -35,13 +42,35 @@ export default async function FAQPage() {
     {} as Record<string, typeof faqList>
   );
 
+  // FAQPage 構造化データを生成
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqList.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
-    <div className="page-faq">
-      <PageHero
-        title="よくある質問"
-        description="清蓮のサービスについて、お客様からよくいただくご質問をまとめました。"
-        backgroundImage="/images/hero-main.png"
-      />
+    <>
+      <JsonLd data={[
+        generateBreadcrumbSchema([
+          { name: 'ホーム', item: '/' },
+          { name: 'よくある質問', item: '/faq' },
+        ]),
+        faqSchema
+      ]} />
+      <div className="page-faq">
+        <PageHero
+          title="よくある質問"
+          description="清蓮のサービスについて、お客様からよくいただくご質問をまとめました。"
+          backgroundImage="/images/hero-main.png"
+        />
 
       <div className="container section-py-lg" style={{ maxWidth: '800px' }}>
         {/* インタラクティブなアコーディオン（クライアントコンポーネント） */}
@@ -55,6 +84,7 @@ export default async function FAQPage() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
