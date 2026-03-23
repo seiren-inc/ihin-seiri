@@ -121,7 +121,7 @@ export function CustomCursor() {
           borderRadius: '50%',
           border: '1px solid var(--color-primary-400)',
           pointerEvents: 'none',
-          zIndex: 9998,
+          zIndex: 980,
           transform: 'translate(-50%, -50%)',
           willChange: 'transform, width, height',
         }}
@@ -139,7 +139,7 @@ export function CustomCursor() {
           borderRadius: '50%',
           backgroundColor: 'var(--color-accent)',
           pointerEvents: 'none',
-          zIndex: 9999,
+          zIndex: 981,
           transform: 'translate(-50%, -50%)',
           willChange: 'transform',
         }}
