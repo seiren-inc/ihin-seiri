@@ -10,6 +10,10 @@ import { CustomCursor } from '@/components/common/CustomCursor';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { MobileStickyCTA } from '@/components/layout/MobileStickyCTA';
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.seiren-ihin.jp';
 
@@ -54,7 +58,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja">
+    <html lang="ja" className={cn("font-sans", geist.variable)}>
       <body>
         <LenisProvider>
           <CustomCursor />

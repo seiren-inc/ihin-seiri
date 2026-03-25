@@ -696,3 +696,46 @@ Rule:
 
 Violation: 根拠なしの判断は INVALID（無効）とする
 
+
+
+---
+
+# Chrome DevTools MCP Pre-Execution Check（MCP実行前チェック）
+
+Why: MCP の無断実行・未接続状態での実行・機密ページへのアクセスを防止する
+
+Rule:
+- Chrome DevTools MCP を使用する前に、対象 route が承認されていることを確認する
+- Antigravity route の場合、Chrome がリモートデバッグ有効（port 9222）で起動済みであることを確認する
+- 実行前に http://127.0.0.1:9222/json に到達可能であることを確認する
+- 接続確認が失敗した場合は即時停止する
+- 明示的に承認されない限り、機密ページやログイン済みページで Chrome DevTools MCP を使用しない
+- MCP 実行前に対象URL、実行理由、選択した route を報告する
+
+Violation:
+- これらのチェックなしでの MCP 実行は失敗扱い
+
+
+
+---
+
+# Available Skills Catalog
+
+Total: 29 skills
+
+Source: Awesome Agent Skills (https://github.com/VoltAgent/awesome-agent-skills)
+
+Skills Path: .agent/skills/
+
+## Skill Usage Rule
+
+- AI は実装開始前に .agent/skills/ を確認し、関連 Skill が存在する場合は SKILL.md を読んで指示に従うこと
+- Skill に記載されたベストプラクティスは、独自判断より優先する
+- 使用した Skill 名をタスク完了時に報告すること
+
+## Available Skills (top 20)
+
+architecture,composition-patterns,copywriting,debugging-strategies,docx,figma,figma-implement-design,frontend-design,gh-address-comments,gh-fix-ci,lint-and-validate,mcp-builder,mobile-first-design-rules,next-best-practices,next-cache-components,next-upgrade,pdf,playwright,pptx,react-best-practices
+
+Full list: ls .agent/skills/
+
