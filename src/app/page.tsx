@@ -14,6 +14,7 @@ import { getCombinedLegalNotice } from '@/data/legal';
 import { faqList } from '@/data/faq';
 import { supportedAreas } from '@/data/areas';
 import { JsonLd, generateLocalBusinessSchema } from '@/components/seo/JsonLd';
+import { GsapReveal } from '@/components/common/GsapReveal';
 import type { Metadata } from 'next';
 import '../styles/pages/home.css';
 
@@ -81,8 +82,8 @@ export default function Home() {
               <span className="trust-badge">✓ 即日対応可</span>
             </div>
             <div className="hero-cta flex gap-sm">
-              <Button href="/contact" size="lg">無料お見積り・ご相談</Button>
-              <Button href="/simulation" variant="secondary" size="lg">1分で料金シミュレーション</Button>
+              <Button href="/contact" size="lg" variant="primary">無料お見積り・ご相談</Button>
+              <Button href="/simulation" variant="outline" size="lg">1分で料金シミュレーション</Button>
             </div>
           </div>
           <div className="hero-visual">
@@ -115,13 +116,15 @@ export default function Home() {
               />
             </div>
             <div className="trust-content">
-              <h2 className="section-title">はじめての方でも、ご安心ください</h2>
-              <p className="section-desc" style={{ marginTop: '1rem', marginBottom: '1.5rem' }}>清蓮は、単なる片付け業者ではありません。安心の終活ブランドとして、お客様のご事情に合わせた最適なプランをご提案します。</p>
-              <div className="trust-points">
+              <GsapReveal>
+                <h2 className="section-title">はじめての方でも、ご安心ください</h2>
+                <p className="section-desc" style={{ marginTop: '1rem', marginBottom: '1.5rem' }}>清蓮は、単なる片付け業者ではありません。安心の終活ブランドとして、お客様のご事情に合わせた最適なプランをご提案します。</p>
+              </GsapReveal>
+              <GsapReveal delay={0.2} stagger={0.1} className="trust-points">
                 <div className="trust-point"><span className="trust-icon">📋</span><span>現地調査・お見積り完全無料</span></div>
                 <div className="trust-point"><span className="trust-icon">🔒</span><span>個人情報・秘密は厳守いたします</span></div>
                 <div className="trust-point"><span className="trust-icon">💚</span><span>女性スタッフ同行のご相談も可能</span></div>
-              </div>
+              </GsapReveal>
             </div>
           </div>
         </div>
@@ -130,11 +133,11 @@ export default function Home() {
       {/* 3. Services */}
       <section className="section-services section-py-lg">
         <div className="container">
-          <div className="section-header text-center">
+          <GsapReveal className="section-header text-center">
             <h2 className="section-title">サービス一覧</h2>
             <p className="section-desc">状況に合わせて最適なサービスをご提供いたします。</p>
-          </div>
-          <div className="service-grid grid grid-cols-1 md:grid-cols-3 gap-lg mt-xl">
+          </GsapReveal>
+          <GsapReveal stagger={0.15} className="service-grid grid grid-cols-1 md:grid-cols-3 gap-lg mt-xl">
             {services.map(service => (
               <div key={service.id} className="service-card card">
                 <div className="service-card-img">
@@ -153,7 +156,7 @@ export default function Home() {
                 </div>
               </div>
             ))}
-          </div>
+          </GsapReveal>
         </div>
       </section>
 
@@ -175,11 +178,11 @@ export default function Home() {
       {/* 5. Cases */}
       <section className="section-cases section-py-lg">
         <div className="container">
-          <div className="section-header text-center flex-col items-center">
+          <GsapReveal className="section-header text-center flex-col items-center">
             <h2 className="section-title">施工事例</h2>
             <p className="section-desc">これまでに清蓮がサポートさせていただいた事例の一部をご紹介します。</p>
-          </div>
-          <div className="case-grid grid grid-cols-1 md:grid-cols-3 gap-lg mt-xl">
+          </GsapReveal>
+          <GsapReveal stagger={0.2} className="case-grid grid grid-cols-1 md:grid-cols-3 gap-lg mt-xl">
             {recentCases.map(caseStudy => (
               <div key={caseStudy.id} className="case-card card">
                 <div className="case-card-img">
@@ -197,7 +200,7 @@ export default function Home() {
                 </div>
               </div>
             ))}
-          </div>
+          </GsapReveal>
           <div className="text-center mt-xl">
             <Button href="/cases" variant="secondary" size="lg">施工事例をもっと見る</Button>
           </div>

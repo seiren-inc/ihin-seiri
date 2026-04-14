@@ -105,12 +105,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-@media (min-width: 1024px) {
-  /* PC用マグネティックカーソルのため標準カーソルを非表示 */
-  body, a, button, input, select, textarea {
-    cursor: none !important;
-  }
-}
 
 h1,
 h2,
