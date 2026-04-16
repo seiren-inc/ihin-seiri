@@ -56,7 +56,7 @@ export default async function AreaDetailPage({ params }: { params: Promise<{ slu
         <PageHero
           title={`${area.prefecture}の遺品整理・ゴミ屋敷清掃・特殊清掃`}
           description={`${area.prefecture}内全域、最短即日で無料訪問お見積りに伺います。ご遺族の負担を軽減し、安心・丁寧なサポートをご提供します。`}
-          backgroundImage="/images/hero-main.png"
+          backgroundImage="/images/service-bg.png"
         />
 
       <div className="container section-py-lg">
@@ -98,7 +98,7 @@ export default async function AreaDetailPage({ params }: { params: Promise<{ slu
               {areaCases.map(caseStudy => (
                 <Link key={caseStudy.id} href={`/cases/${caseStudy.slug}`} className="group bg-white border border-border rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 anim-fadeup">
                   <div className="relative w-full aspect-[4/3] bg-bg-light overflow-hidden">
-                    <Image src={caseStudy.afterImagePlaceholder || '/images/hero-main.png'} alt={`${caseStudy.title}の事例`} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+                    <Image src={caseStudy.afterImagePlaceholder || '/images/service-bg.png'} alt={`${caseStudy.title}の事例`} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
                   </div>
                   <div className="case-card-content p-md">
                     <div className="flex gap-xs mb-xs">

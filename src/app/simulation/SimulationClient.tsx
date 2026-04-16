@@ -45,7 +45,7 @@ export default function SimulationPage() {
       <PageHero
         title="料金シミュレーション"
         description="間取りや階数などを選択するだけで、概算費用や買取目安を事前にご確認いただけます。"
-        backgroundImage="/images/hero-main.png"
+        backgroundImage="/images/service-bg.png"
       />
 
       <div className="container section-py-lg">

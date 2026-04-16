@@ -26,14 +26,14 @@ export default function AreasPage() {
       <PageHero
         title="対応エリア"
         description="清蓮の遺品整理・ゴミ清掃・特殊清掃サービスは関東全域に対応しております。最短即日でのご訪問も可能です。"
-        backgroundImage="/images/hero-main.png"
+        backgroundImage="/images/kanto-map.png"
       />
 
       <div className="container section-py-lg">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-xl lg:gap-2xl items-center mb-2xl anim-fadeup">
           <div className="visual reveal-wrapper rounded-lg overflow-hidden shadow-lg">
             <div className="relative w-full aspect-[4/3] bg-bg-light">
-              <Image src="/images/hero-main.png" alt="関東エリア対応マップ" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover reveal-img" />
+              <Image src="/images/kanto-map.png" alt="関東エリア対応マップ" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover reveal-img" />
             </div>
           </div>
           <div className="content">

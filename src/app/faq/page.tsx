@@ -69,7 +69,7 @@ export default async function FAQPage() {
         <PageHero
           title="よくある質問"
           description="清蓮のサービスについて、お客様からよくいただくご質問をまとめました。"
-          backgroundImage="/images/hero-main.png"
+          backgroundImage="/images/service-bg.png"
         />
 
       <div className="container section-py-lg" style={{ maxWidth: '800px' }}>
