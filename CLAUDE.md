@@ -1,58 +1,36 @@
-# CLAUDE.md — ihin-seiri（技術エージェント向け憲法）
+# ihin-seiri Project Guide
 
-> 最終更新: 2026-03-19 | Package Manager: npm | Node: >=18.0.0
+## Overview
+Next.js 15 (App Router) application using npm, React 19, Tailwind CSS v3, and microCMS.
+Animation: GSAP 3 + Lenis + Framer Motion. 3D: Three.js / R3F / Drei.
 
----
+## Non-Negotiables
+- Production build must use NEXT_TURBOPACK=0.
+- Existing brand colors must not be changed unless explicitly requested.
+  - primary: #1e4f66 / primary-dark: #1a252f / accent: #9c5272
+- PPR is enabled and must not be disabled.
+- Three.js components must never run on SSR.
 
-## コマンド一覧
+## Project-Specific Implementation Rules
+- Use npm for all commands. pnpm and yarn are forbidden.
+- Tailwind CSS v3 uses tailwind.config.js. Custom spacing, borderRadius, and maxWidth defined there must not be removed without explicit approval.
+- microCMS integration requires MICROCMS_SERVICE_DOMAIN and MICROCMS_API_KEY in .env.local.
+- Three.js components must use dynamic import with ssr: false and Suspense.
 
-```bash
-npm run dev          # 開発サーバー起動（Turbopack）
-npm run build        # NEXT_TURBOPACK=0 next build（本番はwebpack）
-npm run start        # 本番サーバー起動
-npm run lint         # ESLint
-```
+## Stop Conditions
+- If requirements are unclear, you must stop and ask for clarification.
+- If a change may alter brand colors or Tailwind config, you must stop.
+- If a change may affect microCMS integration or production build behavior, you must stop.
+- If database schema impact is uncertain, you must stop.
+- If you cannot verify the change, you must stop.
 
----
+## Local Commands
+- npm run dev
+- npm run build
+- npm run start
+- npm run lint
 
-## 技術スタック
-
-| 項目 | 内容 |
-|------|------|
-| Framework | Next.js 15.x |
-| React | 19.x |
-| Styling | Tailwind CSS v3（tailwind.config.js に詳細なカスタムカラー定義済み） |
-| Animation | GSAP 3 + Lenis / Framer Motion v12（新規追加） |
-| 3D | Three.js / @react-three/fiber / @react-three/drei |
-| CMS | microCMS |
-| Icons | Lucide React |
-
----
-
-## 重要：tailwind.config.jsのカスタム設定
-
-```js
-// 変更禁止のプロジェクト固有設定
-primary: { DEFAULT: "#1e4f66", dark: "#1a252f" }
-accent:  { DEFAULT: "#9c5272" }
-// spacing, borderRadius, maxWidth も定義済み
-```
-
----
-
-## PPR & 最適化
-
-```ts
-experimental: { ppr: true }
-images: { formats: ["image/avif", "image/webp"] }
-```
-
----
-
-## エラー解決
-
-```bash
-# Turbopack ビルドエラー → npm run build（NEXT_TURBOPACK=0） で回避
-# Three.js SSRエラー → dynamic import + ssr: false
-# microCMS API エラー → MICROCMS_SERVICE_DOMAIN / MICROCMS_API_KEY を確認
-```
+## Troubleshooting
+- Turbopack build issues: ensure production build uses NEXT_TURBOPACK=0.
+- Three.js SSR errors: verify dynamic import with ssr: false.
+- microCMS API errors: verify MICROCMS_SERVICE_DOMAIN and MICROCMS_API_KEY.
