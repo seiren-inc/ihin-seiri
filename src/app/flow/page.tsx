@@ -39,7 +39,7 @@ export default function FlowPage() {
       step: 4,
       title: '作業当日（仕分け・搬出・清掃）',
       desc: '経験豊富な専門スタッフが、ご近隣への配慮を怠らず、丁寧に仕分け・搬出作業を行います。貴重品の探索や不用品の分別もすべてお任せください。作業後はお部屋の簡易清掃を実施します。',
-      image: '/images/hero-main.png'
+      image: '/images/service-bg.png'
     },
     {
       step: 5,
@@ -75,7 +75,7 @@ export default function FlowPage() {
       <PageHero
         title="ご利用の流れ"
         description="お問い合わせから作業完了まで、専任担当者が一貫してサポートいたします。初めての方でも安心してご依頼いただけるプロセスを構築しています。"
-        backgroundImage="/images/hero-main.png"
+        backgroundImage="/images/service-bg.png"
       />
 
       <div className="container section-py-lg" style={{ maxWidth: '800px' }}>

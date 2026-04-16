@@ -29,7 +29,7 @@ export default function ReasonsPage() {
       number: '02',
       title: '詳細・明確な「明朗会計」・追加費用ゼロのお約束',
       desc: 'お客様に安心してご依頼いただくため、現地で細かいお見積りを作成し、作業内容ごとの金額とその根拠をご説明します。ご提示したお見積り金額から、お客様の追加要望がない限り不当な追加請求は一切行いません。',
-      image: '/images/hero-main.png'
+      image: '/images/service-bg.png'
     },
     {
       id: 'reason-3',
@@ -52,7 +52,7 @@ export default function ReasonsPage() {
       <PageHero
         title="清蓮が選ばれる理由"
         description="安心と信頼をお届けするための、私たちのこだわりをご紹介します。ご遺族様のお気持ちに寄り添った対応をお約束いたします。"
-        backgroundImage="/images/hero-main.png"
+        backgroundImage="/images/service-bg.png"
       />
 
       <div className="container section-py-lg">

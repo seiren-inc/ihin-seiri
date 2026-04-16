@@ -10,7 +10,7 @@ interface PageHeroProps {
 export function PageHero({
   title,
   description,
-  backgroundImage = '/images/hero-main.png',
+  backgroundImage = '/images/service-bg.png',
 }: PageHeroProps) {
   return (
     <div className="page-hero relative w-full overflow-hidden bg-primary-950">
